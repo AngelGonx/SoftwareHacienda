@@ -5,21 +5,19 @@
  */
 package Vista.Principal;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.font.TextAttribute;
-import java.util.HashMap;
-import java.util.Map;
-import javax.swing.Action;
+import javax.swing.JOptionPane;
 
-/*
- * @author Ángel González Rincón Date 15/sep/2021
-*/
-public class accesoPrincipal extends javax.swing.JFrame {
+/**
+ *
+ * @author Usuario
+ */
+public class crearUsuario extends javax.swing.JFrame {
 
-    public accesoPrincipal() {
+    /**
+     * Creates new form crearUsuario
+     */
+    public crearUsuario() {
         initComponents();
-        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -31,25 +29,30 @@ public class accesoPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        usu_b = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
-        b_entrar = new javax.swing.JLabel();
-        entrarButton = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        b_crear = new javax.swing.JLabel();
+        crearButton = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login Hacienda Juchique");
-        setMaximumSize(new java.awt.Dimension(750, 500));
         setMinimumSize(new java.awt.Dimension(750, 500));
-        setSize(new java.awt.Dimension(750, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField1.setEditable(false);
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        jTextField1.setText(" Login Hacienda Juchique");
+        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 30));
 
         jPanel1.setBackground(new java.awt.Color(255, 225, 76));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
@@ -65,21 +68,6 @@ public class accesoPrincipal extends javax.swing.JFrame {
         jTextField3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
-        usu_b.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        usu_b.setForeground(new java.awt.Color(0, 102, 102));
-        usu_b.setText("Crear nuevo usuario");
-        usu_b.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                usu_bMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                usu_bMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                usu_bMouseExited(evt);
-            }
-        });
-
         jPasswordField1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
@@ -92,23 +80,26 @@ public class accesoPrincipal extends javax.swing.JFrame {
         });
         jPanel2.setLayout(null);
 
-        b_entrar.addMouseListener(new java.awt.event.MouseAdapter() {
+        b_crear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                b_entrarMouseClicked(evt);
+                b_crearMouseClicked(evt);
             }
         });
-        jPanel2.add(b_entrar);
-        b_entrar.setBounds(0, 0, 60, 20);
+        jPanel2.add(b_crear);
+        b_crear.setBounds(0, 0, 60, 20);
 
-        entrarButton.setEditable(false);
-        entrarButton.setBackground(new java.awt.Color(191, 144, 0));
-        entrarButton.setFont(new java.awt.Font("Comic Sans MS", 1, 11)); // NOI18N
-        entrarButton.setForeground(new java.awt.Color(255, 255, 255));
-        entrarButton.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        entrarButton.setText(" ENTRAR");
-        entrarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 1, 1, new java.awt.Color(0, 0, 0)));
-        jPanel2.add(entrarButton);
-        entrarButton.setBounds(0, 0, 60, 20);
+        crearButton.setEditable(false);
+        crearButton.setBackground(new java.awt.Color(191, 144, 0));
+        crearButton.setFont(new java.awt.Font("Comic Sans MS", 1, 11)); // NOI18N
+        crearButton.setForeground(new java.awt.Color(255, 255, 255));
+        crearButton.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        crearButton.setText("CREAR");
+        crearButton.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 1, 1, new java.awt.Color(0, 0, 0)));
+        jPanel2.add(crearButton);
+        crearButton.setBounds(0, 0, 60, 20);
+
+        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        jLabel4.setText("Nuevo Usuario");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,32 +109,37 @@ public class accesoPrincipal extends javax.swing.JFrame {
                 .addGap(164, 164, 164)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(189, 189, 189)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(18, 18, 18)
-                            .addComponent(jPasswordField1))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(47, 47, 47)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(usu_b))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addComponent(jLabel4))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)))
+                        .addGap(77, 77, 77)))
                 .addContainerGap(246, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(92, 92, 92)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(29, 29, 29)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -151,61 +147,34 @@ public class accesoPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(usu_b)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                .addGap(147, 147, 147))
+                .addGap(177, 177, 177))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 750, 440));
-
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        jTextField1.setText(" Login Hacienda Juchique");
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 40));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 750, 450));
 
         jTextField2.setEditable(false);
         jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 750, 40));
 
-        setSize(new java.awt.Dimension(766, 539));
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usu_bMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usu_bMouseEntered
-        Font font = usu_b.getFont();
-        Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
-        usu_b.setFont(font.deriveFont(attributes));
-    }//GEN-LAST:event_usu_bMouseEntered
-
-    private void usu_bMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usu_bMouseExited
-        Font font = usu_b.getFont();
-        Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-        attributes.put(TextAttribute.UNDERLINE, -1);
-        usu_b.setFont(font.deriveFont(attributes));
-    }//GEN-LAST:event_usu_bMouseExited
-
-    private void usu_bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usu_bMouseClicked
-        crearUsuario cU = new crearUsuario();
-        cU.setVisible(true);
+    private void b_crearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_crearMouseClicked
+        JOptionPane.showMessageDialog(null, "¡Usuario creador correctamente!");
+        menuPrincipal2 mP = new menuPrincipal2();
+        mP.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_usu_bMouseClicked
+    }//GEN-LAST:event_b_crearMouseClicked
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        JOptionPane.showMessageDialog(null, "¡Usuario creador correctamente!");
         menuPrincipal1 mP = new menuPrincipal1();
         mP.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jPanel2MouseClicked
-
-    private void b_entrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_entrarMouseClicked
-        menuPrincipal1 mP = new menuPrincipal1();
-        mP.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_b_entrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -224,36 +193,36 @@ public class accesoPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(accesoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(crearUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(accesoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(crearUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(accesoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(crearUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(accesoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(crearUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new accesoPrincipal().setVisible(true);
+                new crearUsuario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel b_entrar;
-    private javax.swing.JTextField entrarButton;
+    private javax.swing.JLabel b_crear;
+    private javax.swing.JTextField crearButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JLabel usu_b;
     // End of variables declaration//GEN-END:variables
 }
