@@ -252,7 +252,7 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
         jLabel11.setBounds(467, 94, 39, 30);
 
         jComboBox1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "Otro" }));
         jComboBox1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPanel3.add(jComboBox1);
         jComboBox1.setBounds(310, 120, 140, 30);
