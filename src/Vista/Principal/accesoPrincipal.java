@@ -5,18 +5,22 @@
  */
 package Vista.Principal;
 
+import Controlador.ControladorBaseDeDatos;
+import Modelo.TablaUsuario;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.Action;
+import javax.swing.JOptionPane;
 
 /*
  * @author Ángel González Rincón Date 15/sep/2021
 */
 public class accesoPrincipal extends javax.swing.JFrame {
-
+    TablaUsuario tbu = new TablaUsuario();
+    ControladorBaseDeDatos cut = new ControladorBaseDeDatos();
     public accesoPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -35,9 +39,9 @@ public class accesoPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        campoUsuario = new javax.swing.JTextField();
         usu_b = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        campoPassword = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         b_entrar = new javax.swing.JLabel();
         entrarButton = new javax.swing.JTextField();
@@ -62,8 +66,8 @@ public class accesoPrincipal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel3.setText("Contraseña:");
 
-        jTextField3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        campoUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        campoUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         usu_b.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         usu_b.setForeground(new java.awt.Color(0, 102, 102));
@@ -80,8 +84,8 @@ public class accesoPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        campoPassword.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        campoPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setMinimumSize(new java.awt.Dimension(10, 25));
@@ -124,11 +128,11 @@ public class accesoPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel3)
                             .addGap(18, 18, 18)
-                            .addComponent(jPasswordField1))
+                            .addComponent(campoPassword))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addGap(47, 47, 47)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(159, 159, 159)
                         .addComponent(usu_b))
@@ -146,11 +150,11 @@ public class accesoPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(usu_b)
                 .addGap(18, 18, 18)
@@ -196,15 +200,27 @@ public class accesoPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_usu_bMouseClicked
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        menuPrincipal1 mP = new menuPrincipal1();
-        mP.setVisible(true);
-        this.dispose();
+//        menuPrincipal1 mP = new menuPrincipal1();
+//        mP.setVisible(true);
+//        this.dispose();
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void b_entrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_entrarMouseClicked
-        menuPrincipal1 mP = new menuPrincipal1();
-        mP.setVisible(true);
-        this.dispose();
+
+        tbu.setName(campoUsuario.getText());
+        tbu.setUsername(campoUsuario.getText());
+        tbu.setPassword(campoPassword.getText());
+        cut.openConnection();
+        TablaUsuario tbuR = cut.obtenerUsuario(tbu);
+        cut.closeConnection();
+        if(tbu.getUsername().equals(tbuR.getUsername()) && tbu.getPassword().equals(tbuR.getPassword())){
+            menuPrincipal2 mP = new menuPrincipal2(tbuR);
+            mP.setVisible(true);
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No existe el usuario con el que quieres ingresar.");
+        }
     }//GEN-LAST:event_b_entrarMouseClicked
 
     /**
@@ -244,16 +260,16 @@ public class accesoPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel b_entrar;
+    private javax.swing.JPasswordField campoPassword;
+    private javax.swing.JTextField campoUsuario;
     private javax.swing.JTextField entrarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel usu_b;
     // End of variables declaration//GEN-END:variables
 }

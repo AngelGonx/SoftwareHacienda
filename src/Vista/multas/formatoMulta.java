@@ -5,6 +5,14 @@
  */
 package Vista.multas;
 
+import Controlador.ControladorBaseDeDatos;
+import Controlador.ControladorUtilerias;
+import Modelo.TablaMultas;
+import Modelo.TablaUsuario;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Usuario
@@ -14,8 +22,39 @@ public class formatoMulta extends javax.swing.JFrame {
     /**
      * Creates new form formatoMulta
      */
+    ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
+    TablaMultas tbm = new TablaMultas();
+    TablaUsuario tbu = new TablaUsuario();
+    ControladorUtilerias cu = new ControladorUtilerias();
+    int id = 0;
+    int numeroFactura = 0;
     public formatoMulta() {
         initComponents();
+    }
+    
+    public formatoMulta(TablaUsuario tbu,TablaMultas tm) {
+        initComponents();
+        Date dt = new Date();
+        String fecha = cu.convertirFechaDict(dt);
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DATE, 15); //Aumenta 15 dias el vencimiento de la factura
+        dt = c.getTime();
+        System.out.println("Tomorrow: "+dt);
+        this.id = tm.getId();
+        System.out.println(tm.getId());
+        campoFechaActual.setText(fecha);
+        String fechaV = cu.convertirFechaDict(dt);
+        campoFechaVencimiento.setText(fechaV);
+        campoConceptoPago.setText(tm.getConcepto_pago());
+        campoNombreMulta.setText(tm.getNombre());
+        campoTotalPagar.setText("$"+tm.getPrecio()+".00");
+        campoUsuarioActual.setText(tbu.getUsername());
+        cbd.openConnection();
+        numeroFactura = cbd.obtenerNumeroFactura();
+        cbd.closeConnection();
+        campoFactura.setText("No. Factura: "+numeroFactura);
+        
     }
 
     /**
@@ -32,7 +71,7 @@ public class formatoMulta extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        campoUsuarioActual = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         regresar_b = new javax.swing.JLabel();
         entrarButton = new javax.swing.JTextField();
@@ -43,10 +82,10 @@ public class formatoMulta extends javax.swing.JFrame {
         guardarImprimir = new javax.swing.JLabel();
         entrarButton2 = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        campoFechaActual = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        campoNombreMulta = new javax.swing.JTextField();
+        campoFactura = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
@@ -67,9 +106,9 @@ public class formatoMulta extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
+        campoConceptoPago = new javax.swing.JTextArea();
+        campoTotalPagar = new javax.swing.JTextField();
+        campoFechaVencimiento = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -108,8 +147,8 @@ public class formatoMulta extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/iconoPerfilPeque_1.png"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        jLabel3.setText("Usuario");
+        campoUsuarioActual.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        campoUsuarioActual.setText("Usuario");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -119,7 +158,7 @@ public class formatoMulta extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addComponent(campoUsuarioActual, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -127,7 +166,7 @@ public class formatoMulta extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(campoUsuarioActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -187,25 +226,25 @@ public class formatoMulta extends javax.swing.JFrame {
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/calendario.png"))); // NOI18N
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 100, -1, -1));
 
-        jTextField5.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField5.setToolTipText("");
-        jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 160, 30));
+        campoFechaActual.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoFechaActual.setToolTipText("");
+        campoFechaActual.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoFechaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 160, 30));
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(191, 144, 0));
         jLabel5.setText("Multa-");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(191, 144, 0));
-        jTextField1.setText("No usar cinturón de seguridad");
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 360, 40));
+        campoNombreMulta.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        campoNombreMulta.setForeground(new java.awt.Color(191, 144, 0));
+        campoNombreMulta.setText("No usar cinturón de seguridad");
+        campoNombreMulta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoNombreMulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 360, 40));
 
-        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel6.setText("No. Factura: 00245");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+        campoFactura.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        campoFactura.setText("No. Factura: 00245");
+        jPanel1.add(campoFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel7.setText("Comprobante de infracción");
@@ -293,25 +332,25 @@ public class formatoMulta extends javax.swing.JFrame {
         jLabel17.setOpaque(true);
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 490, 150, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jScrollPane1.setViewportView(jTextArea1);
+        campoConceptoPago.setColumns(20);
+        campoConceptoPago.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        campoConceptoPago.setRows(5);
+        campoConceptoPago.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jScrollPane1.setViewportView(campoConceptoPago);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, 590, 120));
 
-        jTextField13.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField13.setText(" $868.80");
-        jTextField13.setToolTipText("");
-        jTextField13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 650, 180, 30));
+        campoTotalPagar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        campoTotalPagar.setText(" $868.80");
+        campoTotalPagar.setToolTipText("");
+        campoTotalPagar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoTotalPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 650, 180, 30));
 
-        jTextField14.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField14.setText(" 28-sep-2021");
-        jTextField14.setToolTipText("");
-        jTextField14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 690, 180, 30));
+        campoFechaVencimiento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        campoFechaVencimiento.setText(" 28-sep-2021");
+        campoFechaVencimiento.setToolTipText("");
+        campoFechaVencimiento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoFechaVencimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 690, 180, 30));
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 640, 610, 10));
@@ -436,6 +475,13 @@ public class formatoMulta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea campoConceptoPago;
+    private javax.swing.JLabel campoFactura;
+    private javax.swing.JTextField campoFechaActual;
+    private javax.swing.JTextField campoFechaVencimiento;
+    private javax.swing.JTextField campoNombreMulta;
+    private javax.swing.JTextField campoTotalPagar;
+    private javax.swing.JLabel campoUsuarioActual;
     private javax.swing.JTextField entrarButton;
     private javax.swing.JTextField entrarButton2;
     private javax.swing.JLabel guardarImprimir;
@@ -461,12 +507,10 @@ public class formatoMulta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -478,17 +522,12 @@ public class formatoMulta extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;

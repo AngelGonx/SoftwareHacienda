@@ -5,8 +5,18 @@
  */
 package Vista.multas;
 
+import Controlador.ControladorBaseDeDatos;
+import Modelo.TablaMultas;
+import Modelo.TablaUsuario;
 import Vista.Principal.menuPrincipal2;
 import java.awt.Color;
+import java.sql.Timestamp;
+import java.time.Instant;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,11 +27,52 @@ public class multasTabla extends javax.swing.JFrame {
     /**
      * Creates new form multasTabla
      */
+    String[] columna = new String[] {"id","nombre","concepto_pago","precio","created_by"}; //La columna nos sirve de ancla para cargar el modelo y pintarlo en la tabla
+    ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
+    DefaultTableModel modeloMultas;
+    TablaMultas tbm = new TablaMultas();
+    TablaUsuario tbu = new TablaUsuario();
     public multasTabla() {
         initComponents();
         
     }
-
+    public multasTabla(TablaUsuario tbu) {
+        System.out.println(tbu.toString());
+        
+        cbd.openConnection();
+        modeloMultas = cbd.modeloMultas(columna);
+        cbd.closeConnection();
+        
+        this.tbu = tbu;
+        initComponents();
+        campoUsuarioActual.setText(tbu.getUsername());
+        tablaMultas.setModel(modeloMultas);
+        
+         tablaMultas.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = tablaMultas.rowAtPoint(evt.getPoint());
+                int col = 0;
+                if (row >= 0 && col >= 0) {
+                    String valor = tablaMultas.getModel().getValueAt(row, col).toString(); //Tomo el valor de el modelo de la tabla
+                    campoID.setText(valor); //Obtengo el valor del textfield
+                }
+                col = 1;
+                if (row >= 0 && col >= 0) {
+                    String valor = tablaMultas.getModel().getValueAt(row, col).toString(); //Tomo el valor de el modelo de la tabla
+                    campoNombreMulta.setText(valor); //Obtengo el valor del textfield
+                }
+                col = 3;
+                if (row >= 0 && col >= 0) {
+                    String valor = tablaMultas.getModel().getValueAt(row, col).toString(); //Tomo el valor de el modelo de la tabla
+                    campoPrecio.setText(valor); //Obtengo el valor del textfield
+                }
+            }
+        });
+        ((DefaultTableCellRenderer) tablaMultas.getTableHeader().getDefaultRenderer())
+                       .setHorizontalAlignment(SwingConstants.CENTER);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,15 +86,15 @@ public class multasTabla extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
+        campoUsuarioActual = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        campoPrecio = new javax.swing.JTextField();
+        campoID = new javax.swing.JTextField();
+        campoNombreMulta = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        crearMulta_b = new javax.swing.JLabel();
+        tablaMultas = new javax.swing.JTable();
+        crearMulta_b1 = new javax.swing.JLabel();
         entrarButton = new javax.swing.JTextField();
         editar_b = new javax.swing.JLabel();
         entrarButton1 = new javax.swing.JTextField();
@@ -51,6 +102,9 @@ public class multasTabla extends javax.swing.JFrame {
         entrarButton2 = new javax.swing.JTextField();
         regresar_b = new javax.swing.JLabel();
         entrarButton3 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(" Hacienda Juchique");
@@ -73,10 +127,10 @@ public class multasTabla extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 225, 76));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 3, 0, 0, new java.awt.Color(0, 0, 0)));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/iconoPerfilPeque_1.png"))); // NOI18N
+        campoUsuarioActual.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        campoUsuarioActual.setText("Usuario");
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        jLabel3.setText("Usuario");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/iconoPerfilPeque.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -86,60 +140,47 @@ public class multasTabla extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
+                .addComponent(campoUsuarioActual, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campoUsuarioActual, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, 50));
 
-        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jTextField1.setText(" Precio");
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 210, 30));
+        campoPrecio.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        campoPrecio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 210, 30));
 
-        jTextField4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jTextField4.setText(" ID");
-        jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 210, -1));
+        campoID.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        campoID.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoID, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 210, -1));
 
-        jTextField5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jTextField5.setText(" Nombre de la multa");
-        jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 210, 30));
+        campoNombreMulta.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        campoNombreMulta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoNombreMulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 210, 30));
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(191, 144, 0));
-        jLabel1.setText("Multas");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, -1));
+        jLabel1.setText("Tipos de Multas");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        tablaMultas.setModel(modeloMultas);
+        jScrollPane1.setViewportView(tablaMultas);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 390, 200));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 450, 300));
 
-        crearMulta_b.addMouseListener(new java.awt.event.MouseAdapter() {
+        crearMulta_b1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                crearMulta_bMouseClicked(evt);
+                crearMulta_b1MouseClicked(evt);
             }
         });
-        jPanel1.add(crearMulta_b, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 230, 30));
+        jPanel1.add(crearMulta_b1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 230, 30));
 
         entrarButton.setEditable(false);
         entrarButton.setBackground(new java.awt.Color(191, 144, 0));
@@ -148,6 +189,11 @@ public class multasTabla extends javax.swing.JFrame {
         entrarButton.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         entrarButton.setText("Crear multa");
         entrarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
+        entrarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entrarButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 230, 30));
 
         editar_b.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -198,6 +244,15 @@ public class multasTabla extends javax.swing.JFrame {
         entrarButton3.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
         jPanel1.add(entrarButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 230, 30));
 
+        jLabel3.setText("ID");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+
+        jLabel4.setText("Nombre Multa");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+
+        jLabel5.setText("Precio");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,61 +268,128 @@ public class multasTabla extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void crearMulta_bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearMulta_bMouseClicked
-    }//GEN-LAST:event_crearMulta_bMouseClicked
-
     private void editar_bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editar_bMouseClicked
         // TODO add your handling code here:
+        Timestamp instant= Timestamp.from(Instant.now());  //Toma la información de hoy
+        tbm.setPrecio(campoPrecio.getText());
+        tbm.setConcepto_pago(campoNombreMulta.getText());
+        tbm.setNombre(campoNombreMulta.getText());
+        tbm.setId(Integer.parseInt(campoID.getText()));
+        tbm.setCreated_at(instant);
+        tbm.setUpdated_at(instant);
+        tbm.setCreated_by(tbu.getUsername()); //Esto se puede cambiar al ID, si se quiere relacionar >D
+        cbd.openConnection();
+        int operacionExitosa = cbd.actualizaMulta(tbm);
+        cbd.closeConnection();
+        if(operacionExitosa == 1){
+            refrescarTabla();
+            JOptionPane.showMessageDialog(null, "Multa Actualizada Exitosamente.");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No se pudo actualizar la multa. Consulta al administrador.");
+        }
+        
     }//GEN-LAST:event_editar_bMouseClicked
 
     private void crearForMulta_bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearForMulta_bMouseClicked
         // TODO add your handling code here:
+        if(!campoID.getText().equals("")){
+            tbm.setPrecio(campoPrecio.getText());
+            tbm.setConcepto_pago(campoNombreMulta.getText());
+            tbm.setNombre(campoNombreMulta.getText());
+            tbm.setId(Integer.parseInt(campoID.getText()));
+            formatoMulta fm = new formatoMulta(tbu, tbm);
+            fm.show();
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Es necesario insertar el id de la multa para continuar. Consulta al administrador");
+        }
     }//GEN-LAST:event_crearForMulta_bMouseClicked
 
     private void regresar_bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresar_bMouseClicked
-        menuPrincipal2 mP2 = new menuPrincipal2();
+        menuPrincipal2 mP2 = new menuPrincipal2(tbu);
         mP2.show();
         this.dispose();
     }//GEN-LAST:event_regresar_bMouseClicked
 
+    public void refrescarTabla() {                                            
+        cbd.openConnection();
+        modeloMultas = cbd.modeloMultas(columna);
+        cbd.closeConnection();
+        tablaMultas.setModel(modeloMultas);
+        modeloMultas.fireTableDataChanged();
+    } 
+    private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
+        // TODO add your handling code here:
+//        System.out.println("Hola");
+    }//GEN-LAST:event_entrarButtonActionPerformed
+
+    private void crearMulta_b1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearMulta_b1MouseClicked
+        // TODO add your handling code here:
+        //System.out.println("Hola");
+        Timestamp instant= Timestamp.from(Instant.now());  //Toma la información de hoy
+        tbm.setPrecio(campoPrecio.getText());
+        tbm.setConcepto_pago(campoNombreMulta.getText());
+        tbm.setNombre(campoNombreMulta.getText());
+        tbm.setId(Integer.parseInt(campoID.getText()));
+        tbm.setCreated_at(instant);
+        tbm.setUpdated_at(instant);
+        tbm.setCreated_by(tbu.getUsername()); //Esto se puede cambiar al ID, si se quiere relacionar >D
+        cbd.openConnection();
+        int operacionExitosa = cbd.crearMulta(tbm);
+        cbd.closeConnection();
+        if(operacionExitosa == 1){
+            refrescarTabla();
+            JOptionPane.showMessageDialog(null, "Multa Guardada Exitosamente.");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No se pudo guardar la multa. Consulta al administrador.");
+        }
+    }//GEN-LAST:event_crearMulta_b1MouseClicked
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(multasTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(multasTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(multasTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(multasTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new multasTabla().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(multasTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(multasTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(multasTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(multasTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new multasTabla().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField campoID;
+    private javax.swing.JTextField campoNombreMulta;
+    private javax.swing.JTextField campoPrecio;
+    private javax.swing.JLabel campoUsuarioActual;
     private javax.swing.JLabel crearForMulta_b;
-    private javax.swing.JLabel crearMulta_b;
+    private javax.swing.JLabel crearMulta_b1;
     private javax.swing.JLabel editar_b;
     private javax.swing.JTextField entrarButton;
     private javax.swing.JTextField entrarButton1;
@@ -276,15 +398,14 @@ public class multasTabla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel regresar_b;
+    private javax.swing.JTable tablaMultas;
     // End of variables declaration//GEN-END:variables
 }

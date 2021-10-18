@@ -5,6 +5,7 @@
  */
 package Vista.Principal;
 
+import Modelo.TablaUsuario;
 import Vista.Licencias.licenciasLista;
 import Vista.Placas.verificarPlacas;
 import Vista.Vehiculos.vehiculosTabla;
@@ -22,6 +23,14 @@ public class menuPrincipal2 extends javax.swing.JFrame {
     public menuPrincipal2() {
         initComponents();
     }
+    public TablaUsuario tbu = new TablaUsuario();
+    //Creo un constructor para realizar la informaci'on del usuario actual
+    public menuPrincipal2(TablaUsuario tbu) {
+        initComponents();
+        this.tbu = tbu;
+        System.out.println(tbu.toString());
+        campoUsuarioActual.setText(tbu.getUsername());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,7 +47,7 @@ public class menuPrincipal2 extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        campoUsuarioActual = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
         jToggleButton3 = new javax.swing.JToggleButton();
@@ -77,8 +86,8 @@ public class menuPrincipal2 extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/iconoPerfilPeque_1.png"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        jLabel3.setText("Usuario");
+        campoUsuarioActual.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        campoUsuarioActual.setText("Usuario");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -88,7 +97,7 @@ public class menuPrincipal2 extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addComponent(campoUsuarioActual, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -96,7 +105,7 @@ public class menuPrincipal2 extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(campoUsuarioActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -109,7 +118,7 @@ public class menuPrincipal2 extends javax.swing.JFrame {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 100, 100));
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 100, 100));
 
         jToggleButton2.setBackground(new java.awt.Color(255, 255, 255));
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/multas.png"))); // NOI18N
@@ -118,7 +127,7 @@ public class menuPrincipal2 extends javax.swing.JFrame {
                 jToggleButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 100, 110));
+        jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 100, 110));
 
         jToggleButton3.setBackground(new java.awt.Color(255, 255, 255));
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/placas.png"))); // NOI18N
@@ -127,7 +136,7 @@ public class menuPrincipal2 extends javax.swing.JFrame {
                 jToggleButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 140, 120));
+        jPanel1.add(jToggleButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 140, 120));
 
         jToggleButton4.setBackground(new java.awt.Color(255, 255, 255));
         jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/coche.png"))); // NOI18N
@@ -136,7 +145,7 @@ public class menuPrincipal2 extends javax.swing.JFrame {
                 jToggleButton4MouseClicked(evt);
             }
         });
-        jPanel1.add(jToggleButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 100, 100));
+        jPanel1.add(jToggleButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 100, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,15 +167,16 @@ public class menuPrincipal2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        multasTabla mT = new multasTabla();
+        System.out.println(tbu.toString());
+        multasTabla mT = new multasTabla(tbu);
         mT.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jToggleButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton4MouseClicked
-    vehiculosTabla vT = new vehiculosTabla();
-    vT.setVisible(true);
-    this.dispose();
+        vehiculosTabla vT = new vehiculosTabla(tbu);
+        vT.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jToggleButton4MouseClicked
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
@@ -217,9 +227,9 @@ public class menuPrincipal2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel campoUsuarioActual;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField2;

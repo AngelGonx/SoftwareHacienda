@@ -1,4 +1,4 @@
-package Modelo
+package Modelo;
 //created on 16-10-2021 at 8:11:22
 //class 'TablaPropietario'
 public class TablaPropietario{

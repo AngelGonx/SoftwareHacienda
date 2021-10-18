@@ -5,6 +5,11 @@
  */
 package Vista.Principal;
 
+import Controlador.ControladorBaseDeDatos;
+import Modelo.TablaUsuario;
+import java.awt.event.KeyEvent;
+import java.sql.Timestamp;
+import java.time.Instant;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +21,8 @@ public class crearUsuario extends javax.swing.JFrame {
     /**
      * Creates new form crearUsuario
      */
+    TablaUsuario tbu = new TablaUsuario();
+    ControladorBaseDeDatos cut = new ControladorBaseDeDatos();
     public crearUsuario() {
         initComponents();
     }
@@ -34,12 +41,13 @@ public class crearUsuario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        campoUsuario = new javax.swing.JTextField();
+        campoPassword = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         b_crear = new javax.swing.JLabel();
         crearButton = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        campoError = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,11 +73,21 @@ public class crearUsuario extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel3.setText("Contraseña:");
 
-        jTextField3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        campoUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        campoUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        campoUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoUsuarioKeyTyped(evt);
+            }
+        });
 
-        jPasswordField1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        campoPassword.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        campoPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        campoPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoPasswordKeyTyped(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setMinimumSize(new java.awt.Dimension(10, 25));
@@ -108,25 +126,27 @@ public class crearUsuario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(164, 164, 164)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(jLabel4))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77)))
+                    .addComponent(campoError)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(18, 18, 18)
+                            .addComponent(campoPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(44, 44, 44)
+                                    .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(70, 70, 70)
+                                    .addComponent(jLabel4))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(77, 77, 77))))
                 .addContainerGap(246, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -142,14 +162,16 @@ public class crearUsuario extends javax.swing.JFrame {
                         .addGap(29, 29, 29)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                .addGap(177, 177, 177))
+                .addGap(18, 18, 18)
+                .addComponent(campoError)
+                .addGap(143, 143, 143))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 750, 450));
@@ -163,18 +185,55 @@ public class crearUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_crearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_crearMouseClicked
-        JOptionPane.showMessageDialog(null, "¡Usuario creador correctamente!");
-        menuPrincipal2 mP = new menuPrincipal2();
-        mP.setVisible(true);
-        this.dispose();
+        Timestamp instant= Timestamp.from(Instant.now());  //Toma la información de hoy
+        cut.openConnection();
+        tbu.setName(campoUsuario.getText());
+        tbu.setUsername(campoUsuario.getText());
+        tbu.setPassword(campoPassword.getText());
+        tbu.setCreated_at(instant);
+        tbu.setUpdate_at(instant);
+        int operacionExitosa = cut.guardarUsuarios(tbu);
+        cut.closeConnection();
+        if(operacionExitosa==1)
+        {
+            JOptionPane.showMessageDialog(null, "¡Usuario creador correctamente, bienvenido "+tbu.getUsername()+"!");
+            menuPrincipal2 mP = new menuPrincipal2(tbu);
+            mP.setVisible(true);
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "¡Usuario no creado, consulta al administrador!");
+        }
     }//GEN-LAST:event_b_crearMouseClicked
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        JOptionPane.showMessageDialog(null, "¡Usuario creador correctamente!");
-        menuPrincipal1 mP = new menuPrincipal1();
-        mP.setVisible(true);
-        this.dispose();
+//        JOptionPane.showMessageDialog(null, "¡Usuario creador correctamente!");
+//        menuPrincipal1 mP = new menuPrincipal1();
+//        mP.setVisible(true);
+//        this.dispose();
     }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void campoUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoUsuarioKeyTyped
+        // TODO add your handling code here:
+        if(!Character.isLetter(evt.getKeyChar())){
+            evt.consume();
+            campoError.setText("\"Por favor, ingresa solo letras para el usuario.\"");
+        }
+        else{
+            campoError.setText("");
+        }
+    }//GEN-LAST:event_campoUsuarioKeyTyped
+
+    private void campoPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoPasswordKeyTyped
+        // TODO add your handling code here:
+//        if(!Character.isLetter(evt.getKeyChar())){
+//            evt.consume();
+//            campoError.setText("\"Por favor, ingresa solo letras e para el usuario.\"");
+//        }
+//        else{
+//            campoError.setText("");
+//        }
+    }//GEN-LAST:event_campoPasswordKeyTyped
 
     /**
      * @param args the command line arguments
@@ -213,6 +272,9 @@ public class crearUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel b_crear;
+    private javax.swing.JLabel campoError;
+    private javax.swing.JPasswordField campoPassword;
+    private javax.swing.JTextField campoUsuario;
     private javax.swing.JTextField crearButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -220,9 +282,7 @@ public class crearUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
