@@ -180,7 +180,7 @@ public class menuPrincipal2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton4MouseClicked
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        licenciasLista lL = new licenciasLista();
+        licenciasLista lL = new licenciasLista(tbu);
         lL.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jToggleButton1ActionPerformed

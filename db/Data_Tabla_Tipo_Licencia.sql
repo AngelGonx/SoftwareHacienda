@@ -1,0 +1,4 @@
+INSERT INTO `hacienda`.`tabla_tipo_licencia` (`id`, `concepto_cobro`, `costo`, `created_by`, `created_at`, `updated_at`) VALUES ('1', 'Licencia de Tipo A', '$1,858.00', 'jose', '2021-10-17 13:42:21', '2021-10-17 13:42:21');
+INSERT INTO `hacienda`.`tabla_tipo_licencia` (`id`, `concepto_cobro`, `costo`, `created_by`, `created_at`, `updated_at`) VALUES ('2', 'Licencia de Tipo B', '$1,748.00', 'jose', '2021-10-17 13:42:21', '2021-10-17 13:42:21');
+INSERT INTO `hacienda`.`tabla_tipo_licencia` (`id`, `concepto_cobro`, `costo`, `created_by`, `created_at`, `updated_at`) VALUES ('3', 'Licencia de Tipo C', '$1,530.00', 'jose', '2021-10-17 13:42:21', '2021-10-17 13:42:21');
+INSERT INTO `hacienda`.`tabla_tipo_licencia` (`id`, `concepto_cobro`, `costo`, `created_by`, `created_at`, `updated_at`) VALUES ('4', 'Licencia de Tipo D', '$1,093.00', 'jose', '2021-10-17 13:42:21', '2021-10-17 13:42:21');

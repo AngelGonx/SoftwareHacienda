@@ -6,7 +6,8 @@
 package Vista.Licencias;
 
 import Vista.Principal.menuPrincipal2;
-
+import Modelo.TablaUsuario;
+import javax.swing.ButtonGroup;
 /**
  *
  * @author Usuario
@@ -16,8 +17,21 @@ public class licenciasLista extends javax.swing.JFrame {
     /**
      * Creates new form licenciasLista
      */
+    TablaUsuario tbu = new TablaUsuario();
+    
     public licenciasLista() {
         initComponents();
+    }
+    
+    public licenciasLista(TablaUsuario tbu) {
+        initComponents();
+        this.tbu = tbu;
+        campoUsuarioActual.setText(tbu.getUsername());
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(btnTipoC);
+        bg.add(btnTipoB);
+        bg.add(btnTipoA);
+        bg.add(btnTipoD);
     }
 
     /**
@@ -30,18 +44,20 @@ public class licenciasLista extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        regresar_b = new javax.swing.JLabel();
+        btnAceptar = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        campoUsuarioActual = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        regresa = new javax.swing.JTextField();
+        campoAceptar = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        btnTipoC = new javax.swing.JRadioButton();
+        btnTipoA = new javax.swing.JRadioButton();
+        btnTipoB = new javax.swing.JRadioButton();
+        btnTipoD = new javax.swing.JRadioButton();
+        regresar_b1 = new javax.swing.JLabel();
+        regresa1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(750, 500));
@@ -50,20 +66,20 @@ public class licenciasLista extends javax.swing.JFrame {
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        regresar_b.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                regresar_bMouseClicked(evt);
+                btnAceptarMouseClicked(evt);
             }
         });
-        jPanel1.add(regresar_b, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, 110, 30));
+        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 110, 30));
 
         jPanel2.setBackground(new java.awt.Color(255, 225, 76));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 3, 0, 0, new java.awt.Color(0, 0, 0)));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/iconoPerfilPeque_1.png"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        jLabel3.setText("Usuario");
+        campoUsuarioActual.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        campoUsuarioActual.setText("Usuario");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -73,7 +89,7 @@ public class licenciasLista extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addComponent(campoUsuarioActual, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -81,7 +97,7 @@ public class licenciasLista extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(campoUsuarioActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -98,43 +114,52 @@ public class licenciasLista extends javax.swing.JFrame {
         jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 30));
 
-        regresa.setEditable(false);
-        regresa.setBackground(new java.awt.Color(191, 144, 0));
-        regresa.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        regresa.setForeground(new java.awt.Color(255, 255, 255));
-        regresa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        regresa.setText("Regresar");
-        regresa.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(regresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, 110, 30));
+        campoAceptar.setEditable(false);
+        campoAceptar.setBackground(new java.awt.Color(191, 144, 0));
+        campoAceptar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        campoAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        campoAceptar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoAceptar.setText("Aceptar");
+        campoAceptar.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(campoAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 110, 30));
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(191, 144, 0));
-        jLabel4.setText("Licencias");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, -1, -1));
+        jLabel4.setText("Seleccionar Tipo de Licencia (Nueva)");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jComboBox1.setOpaque(false);
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 530, 40));
+        btnTipoC.setText("Licencia Tipo C: $1,530.00");
+        jPanel1.add(btnTipoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, -1));
 
-        jComboBox2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jComboBox2.setOpaque(false);
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 530, 40));
+        btnTipoA.setText("Licencia Tipo A: $1,858.00");
+        jPanel1.add(btnTipoA, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
 
-        jComboBox3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jComboBox3.setOpaque(false);
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 530, 40));
+        btnTipoB.setText("Licencia Tipo B: $1,748.00");
+        btnTipoB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTipoBActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnTipoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, -1, -1));
 
-        jComboBox4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jComboBox4.setOpaque(false);
-        jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 530, 40));
+        btnTipoD.setText("Licencia Tipo D: $1,093.00");
+        jPanel1.add(btnTipoD, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, -1, -1));
+
+        regresar_b1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                regresar_b1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(regresar_b1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 110, 30));
+
+        regresa1.setEditable(false);
+        regresa1.setBackground(new java.awt.Color(191, 144, 0));
+        regresa1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        regresa1.setForeground(new java.awt.Color(255, 255, 255));
+        regresa1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        regresa1.setText("Regresar");
+        regresa1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(regresa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 110, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,11 +176,38 @@ public class licenciasLista extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void regresar_bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresar_bMouseClicked
-        menuPrincipal2 mP2 = new menuPrincipal2();
+    private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
+        String conceptoPago = "";
+        String precioLicencia = "";
+        if(btnTipoA.isSelected()){
+            conceptoPago = "Licencia de Tipo A";
+            precioLicencia = "$1,858.00";
+        }
+        if(btnTipoB.isSelected()){
+            conceptoPago = "Licencia de Tipo B";
+            precioLicencia = "$1,748.00";
+        }
+        if(btnTipoC.isSelected()){
+            conceptoPago = "Licencia de Tipo C";
+            precioLicencia = "$1,530.00";
+        }
+        if(btnTipoD.isSelected()){
+            conceptoPago = "Licencia de Tipo D";
+            precioLicencia = "$1,093.00";
+        }
+        //Esto podria agilizarse pero al ser solo 4 casos de prueba no es necesario
+    }//GEN-LAST:event_btnAceptarMouseClicked
+
+    private void regresar_b1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresar_b1MouseClicked
+        // TODO add your handling code here:
+        menuPrincipal2 mP2 = new menuPrincipal2(tbu);
         mP2.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_regresar_bMouseClicked
+    }//GEN-LAST:event_regresar_b1MouseClicked
+
+    private void btnTipoBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTipoBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTipoBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,18 +245,20 @@ public class licenciasLista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JLabel btnAceptar;
+    private javax.swing.JRadioButton btnTipoA;
+    private javax.swing.JRadioButton btnTipoB;
+    private javax.swing.JRadioButton btnTipoC;
+    private javax.swing.JRadioButton btnTipoD;
+    private javax.swing.JTextField campoAceptar;
+    private javax.swing.JLabel campoUsuarioActual;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField regresa;
-    private javax.swing.JLabel regresar_b;
+    private javax.swing.JTextField regresa1;
+    private javax.swing.JLabel regresar_b1;
     // End of variables declaration//GEN-END:variables
 }
