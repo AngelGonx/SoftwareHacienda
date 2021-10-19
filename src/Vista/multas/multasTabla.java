@@ -288,7 +288,6 @@ public class multasTabla extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(null, "No se pudo actualizar la multa. Consulta al administrador.");
         }
-        
     }//GEN-LAST:event_editar_bMouseClicked
 
     private void crearForMulta_bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearForMulta_bMouseClicked
