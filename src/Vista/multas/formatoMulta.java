@@ -8,7 +8,10 @@ package Vista.multas;
 import Controlador.ControladorBaseDeDatos;
 import Controlador.ControladorUtilerias;
 import Modelo.TablaMultas;
+import Modelo.TablaMultasGeneradas;
 import Modelo.TablaUsuario;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -25,10 +28,13 @@ public class formatoMulta extends javax.swing.JFrame {
      */
     ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
     TablaMultas tbm = new TablaMultas();
+    TablaMultasGeneradas tmg = new TablaMultasGeneradas();
+    TablaMultas tm = new TablaMultas();
     TablaUsuario tbu = new TablaUsuario();
     ControladorUtilerias cu = new ControladorUtilerias();
     int id = 0;
     int numeroFactura = 0;
+
     public formatoMulta() {
         initComponents();
     }
@@ -76,11 +82,11 @@ public class formatoMulta extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         regresar_b = new javax.swing.JLabel();
         entrarButton = new javax.swing.JTextField();
+        guardarImprimir = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel19 = new javax.swing.JLabel();
-        guardarImprimir = new javax.swing.JLabel();
         entrarButton2 = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         campoFechaActual = new javax.swing.JTextField();
@@ -193,6 +199,13 @@ public class formatoMulta extends javax.swing.JFrame {
         entrarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
         jPanel1.add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 840, 110, 30));
 
+        guardarImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guardarImprimirMouseClicked(evt);
+            }
+        });
+        jPanel1.add(guardarImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 160, 30));
+
         jLabel16.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel16.setText("L.C CRISTIAN MARTÍNEZ GONZÁLEZ");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 760, -1, 30));
@@ -208,13 +221,6 @@ public class formatoMulta extends javax.swing.JFrame {
         jLabel19.setText("Oficinas de hacienda del estado en Juchique");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 730, -1, 30));
 
-        guardarImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                guardarImprimirMouseClicked(evt);
-            }
-        });
-        jPanel1.add(guardarImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 510, 160, 30));
-
         entrarButton2.setEditable(false);
         entrarButton2.setBackground(new java.awt.Color(191, 144, 0));
         entrarButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -222,7 +228,7 @@ public class formatoMulta extends javax.swing.JFrame {
         entrarButton2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         entrarButton2.setText("Guardar e imprimir");
         entrarButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(entrarButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 510, 160, 30));
+        jPanel1.add(entrarButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 160, 30));
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/calendario.png"))); // NOI18N
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, -1, -1));
@@ -438,7 +444,8 @@ public class formatoMulta extends javax.swing.JFrame {
 
     private void guardarImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarImprimirMouseClicked
         int value = 0;
-        String fechaActual = campoFechaActual.getText();
+        Timestamp instant= Timestamp.from(Instant.now());
+        int mul = tbm.getId();
         String nombreMulta = campoNombreMulta.getText();
         String nombres = campoNombres.getText();
         String apPat = campoApPat.getText();
@@ -449,13 +456,13 @@ public class formatoMulta extends javax.swing.JFrame {
         String marca = campoMarca.getText();
         String modelo = campoModelo.getText();
         String totalPagar = campoTotalPagar.getText();
+        String limite_pago = campoFechaVencimiento.getText();
         String fechaVenc = campoFechaVencimiento.getText();
 
-        
-        if (fechaActual == "") {
+        if (nombreMulta == "") {
             value++;
         }
-        if (nombreMulta == "") {
+        if (limite_pago == "") {
             value++;
         }
         if (nombres == "") {
@@ -488,12 +495,30 @@ public class formatoMulta extends javax.swing.JFrame {
         if (fechaVenc == "") {
             value++;
         }
-        
-        if(value > 0){   
+
+        if (value > 0) {
             JOptionPane.showMessageDialog(null, "Es necesario llenar todos los datos.");
-        }else{
-            
+        } else {
+            tmg.setfolio(nombreMulta);
+            tmg.setcreated_at(instant);
+            tmg.setupdated_at(instant);
+            tmg.setnombres(nombres);
+            tmg.setapellido_pat(apPat);
+            tmg.setapellido_mat(apMat);
+            tmg.setdomicilio(domicilio);
+            tmg.setplaca_vehiculo(placa);
+            tmg.setnserie_vehiculo(serie);
+            tmg.setmarca_vehiculo(marca);
+            tmg.setmodelo_vehiculo(modelo);
+            tmg.setlimite_pago(limite_pago);
+            tmg.setcreated_by(tbu.getUsername());
+            tmg.setid_multa(mul);
+
+            cbd.openConnection();
+            int operacionExitosa = cbd.formatoMulta(tmg, tm);
+            cbd.closeConnection();
         }
+
     }//GEN-LAST:event_guardarImprimirMouseClicked
 
     /**

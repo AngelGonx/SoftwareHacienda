@@ -6,7 +6,9 @@
 package Controlador;
 
 import Modelo.TablaMultas;
+import Modelo.TablaMultasGeneradas;
 import Modelo.TablaUsuario;
+import Vista.multas.formatoMulta;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,11 +26,12 @@ import javax.swing.table.DefaultTableModel;
  * @author joseluiscaamal
  */
 public class ControladorBaseDeDatos {
-    
+
     private static Connection Conexion; //Abro la conexión
-    
+
     ControladorUtilerias cut = new ControladorUtilerias();
-/*  ----------------------------------------------------------------------------------
+
+    /*  ----------------------------------------------------------------------------------
     Nombre: Clase conex()
     Función: Apertura La Conexión con la BD/ Utilizado para la consulta de tablas
     Aut@r: José Luis Caamal Ic
@@ -37,9 +40,9 @@ public class ControladorBaseDeDatos {
     Nota: Para la url de la conexión usar el driver compatible con SQL 5.5 o 8.0
     ----------------------------------------------------------------------------------
     Crecenciales de DB
-*/
+     */
     public Connection openConnection() {
-        
+
         try {
             //Como obtener la información desde un archivo properties
             String db_nam = cut.obtenerClave("nombreBD");
@@ -52,18 +55,18 @@ public class ControladorBaseDeDatos {
             Conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + db_nam + "?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC", use, pas);
             System.out.println("Se ha iniciado la conexión con el servidor de forma exitosa");
         } catch (ClassNotFoundException | SQLException | IOException ex) {
-           Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Conexion;
     }
-    
-        /*  ----------------------------------------------------------------------------------
+
+    /*  ----------------------------------------------------------------------------------
     Nombre: Clase closeConnection
     Función: Cierra La Conexión con la BD
     Aut@r: José Luis Caamal Ic
     Parametros: 
     ----------------------------------------------------------------------------------
-*/
+     */
     public void closeConnection() {
         try {
             Conexion.close();
@@ -72,21 +75,21 @@ public class ControladorBaseDeDatos {
             Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /*Nombre: Clase Guardar Usuarios
     Función:Inserta los usuarios a la tabla_usuarios
     Aut@r: José Luis Caamal Ic
     Parametros: */
-    public int guardarUsuarios(TablaUsuario usuario){
+    public int guardarUsuarios(TablaUsuario usuario) {
         int validacionExitosa = 1;
-        
+
         try {
             String Query = "INSERT INTO  tabla_usuario VALUES(default,"
                     + "\"" + usuario.getName() + "\", "
                     + "\"" + usuario.getUsername() + "\", "
-                    + "\"" + usuario.getPassword()+ "\", "
+                    + "\"" + usuario.getPassword() + "\", "
                     + "\"" + usuario.getCreated_at() + "\", "
-                    + "\"" + usuario.getUpdate_at()+ "\")";
+                    + "\"" + usuario.getUpdate_at() + "\")";
             //Inica el statement de la conexión
             System.out.println(Query);
             Statement st = Conexion.createStatement();
@@ -100,14 +103,14 @@ public class ControladorBaseDeDatos {
         }
         return validacionExitosa;
     }
-    
+
     /*Nombre: Clase Consulta Usuario Valido
     Función:Consulta el usuario y lo valida
     Aut@r: José Luis Caamal Ic
     Parametros: */
-    public TablaUsuario obtenerUsuario(TablaUsuario tbu){
+    public TablaUsuario obtenerUsuario(TablaUsuario tbu) {
         TablaUsuario tbuAux = new TablaUsuario();
-        String Query = "SELECT * FROM tabla_usuario WHERE username = '"+tbu.getUsername()+"' and password = '"+tbu.getPassword()+"'";
+        String Query = "SELECT * FROM tabla_usuario WHERE username = '" + tbu.getUsername() + "' and password = '" + tbu.getPassword() + "'";
         System.out.println(Query);
         try {
             Statement st;
@@ -115,32 +118,32 @@ public class ControladorBaseDeDatos {
             java.sql.ResultSet resultSet;
             resultSet = st.executeQuery(Query);
             while (resultSet.next()) {
-                  tbuAux.setUsername(resultSet.getString("username"));
-                  tbuAux.setPassword(resultSet.getString("password"));
-                  tbuAux.setId(resultSet.getInt("id"));
+                tbuAux.setUsername(resultSet.getString("username"));
+                tbuAux.setPassword(resultSet.getString("password"));
+                tbuAux.setId(resultSet.getInt("id"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return tbuAux;
     }
-    
+
     /*Nombre: Clase crearMulta
     Función: Crea las multas a los automovilistas
     Aut@r: José Luis Caamal Ic
     Parametros: */
-    public int crearMulta(TablaMultas tm){
+    public int crearMulta(TablaMultas tm) {
         int operacionExitosa = 0;
         try {
             String Query = "INSERT INTO  tabla_multas VALUES("
-                    + "\"" + tm.getId()+ "\", "
-                    + "\"" + tm.getNombre()+ "\", "
-                    + "\"" + tm.getConcepto_pago()+ "\", "
-                    + "\"" + tm.getPrecio()+ "\", "
-                    + "\"" + tm.getCreated_by()+ "\", "
-                    + "\"" + tm.getCreated_at()+ "\","
-                    + "\"" + tm.getUpdated_at()+ "\")";
+                    + "\"" + tm.getId() + "\", "
+                    + "\"" + tm.getNombre() + "\", "
+                    + "\"" + tm.getConcepto_pago() + "\", "
+                    + "\"" + tm.getPrecio() + "\", "
+                    + "\"" + tm.getCreated_by() + "\", "
+                    + "\"" + tm.getCreated_at() + "\","
+                    + "\"" + tm.getUpdated_at() + "\")";
             //Inica el statement de la conexión
             System.out.println(Query);
             Statement st = Conexion.createStatement();
@@ -153,15 +156,15 @@ public class ControladorBaseDeDatos {
             Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
             operacionExitosa = 0;
         }
-    
+
         return operacionExitosa;
     }
-    
+
     /*Nombre: Clase actualizaMulta
     Función: Actualiza las multas a los automovilistas
     Aut@r: José Luis Caamal Ic
     Parametros: */
-    public int actualizaMulta(TablaMultas tm){
+    public int actualizaMulta(TablaMultas tm) {
         int operacionExitosa = 0;
         try {
             //Inica el statement de la conexión
@@ -169,7 +172,7 @@ public class ControladorBaseDeDatos {
                     + "SET "
                     + "nombre = '" + tm.getNombre() + "', "
                     + "precio = '" + tm.getPrecio() + "' "
-                    + "WHERE id = '"+tm.getId()+"'");
+                    + "WHERE id = '" + tm.getId() + "'");
             System.out.println(Query);
             Statement st = Conexion.createStatement();
             st.executeUpdate(Query);
@@ -181,17 +184,17 @@ public class ControladorBaseDeDatos {
             Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
             operacionExitosa = 0;
         }
-    
+
         return operacionExitosa;
     }
-    
+
     /*Nombre: Clase Consulta Multa
     Función:Consulta la multa y la valida
     Aut@r: José Luis Caamal Ic
     Parametros: */
-    public TablaMultas obtenerMulta(TablaMultas tm){
+    public TablaMultas obtenerMulta(TablaMultas tm) {
         TablaMultas tmAux = new TablaMultas();
-        String Query = "SELECT * FROM tabla_usuario WHERE id = '"+tm.getId()+"'";
+        String Query = "SELECT * FROM tabla_usuario WHERE id = '" + tm.getId() + "'";
         System.out.println(Query);
         try {
             Statement st;
@@ -199,54 +202,54 @@ public class ControladorBaseDeDatos {
             java.sql.ResultSet resultSet;
             resultSet = st.executeQuery(Query);
             while (resultSet.next()) {
-                  tmAux.setId(resultSet.getInt("id"));
-                  tmAux.setNombre(resultSet.getString("nombre"));
-                  tmAux.setPrecio(resultSet.getString("precio"));
-                  
+                tmAux.setId(resultSet.getInt("id"));
+                tmAux.setNombre(resultSet.getString("nombre"));
+                tmAux.setPrecio(resultSet.getString("precio"));
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tmAux;
     }
+
     /*Nombre: Clase modeloMultas
     Función: Obtiene el modelo de las multas y las pinta en la tabla
     Aut@r: José Luis Caamal Ic
     Parametros: */
-    
-    public DefaultTableModel modeloMultas(String columna[]){
-       DefaultTableModel modeloRetorno;
-       modeloRetorno = new DefaultTableModel(null, columna); 
-       try{
-                String Query = "SELECT * FROM tabla_multas";
 
-                System.out.println("Contenido en ejecución: "+Query);
+    public DefaultTableModel modeloMultas(String columna[]) {
+        DefaultTableModel modeloRetorno;
+        modeloRetorno = new DefaultTableModel(null, columna);
+        try {
+            String Query = "SELECT * FROM tabla_multas";
 
-                PreparedStatement us = Conexion.prepareStatement(Query);
-                ResultSet res = us.executeQuery();
-                Object objDatos[] = new Object[columna.length]; //Siempre debe cconexoincidir con el numero de columnas!
+            System.out.println("Contenido en ejecución: " + Query);
 
-                while(res.next()){
-                    for (int i = 0; i<columna.length; i++){
-                        objDatos[i] = res.getObject(i+1);
-                        //System.out.println(objDatos[i]);
-                    }
-                    modeloRetorno.addRow(objDatos);
+            PreparedStatement us = Conexion.prepareStatement(Query);
+            ResultSet res = us.executeQuery();
+            Object objDatos[] = new Object[columna.length]; //Siempre debe cconexoincidir con el numero de columnas!
+
+            while (res.next()) {
+                for (int i = 0; i < columna.length; i++) {
+                    objDatos[i] = res.getObject(i + 1);
+                    //System.out.println(objDatos[i]);
                 }
+                modeloRetorno.addRow(objDatos);
             }
-            catch(SQLException ex){
-                Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println(ex.toString());
-            }
-    
-       return modeloRetorno;
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.toString());
+        }
+
+        return modeloRetorno;
     }
-    
+
     /*Nombre: Clase Consulta Numero Factura
     Función:Consulta el actual numero Factura
     Aut@r: José Luis Caamal Ic
     Parametros: */
-    public int obtenerNumeroFactura(){
+    public int obtenerNumeroFactura() {
         int total = 0;
         String Query = "SELECT count(*) as total FROM tabla_multas_generadas";
         System.out.println(Query);
@@ -256,12 +259,47 @@ public class ControladorBaseDeDatos {
             java.sql.ResultSet resultSet;
             resultSet = st.executeQuery(Query);
             while (resultSet.next()) {
-                  total = resultSet.getInt("total");
-                  total = total + 1;
+                total = resultSet.getInt("total");
+                total = total + 1;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return total;
     }
+
+//    Función: Inserta a la base de datos un nuevo formato de multa.
+//    Aut@r: Ángel González Rincón  
+    public int formatoMulta(TablaMultasGeneradas tmg, TablaMultas tm) {
+        int operacionExitosa = 0;
+        try {
+            String Query = "INSERT INTO  tabla_multas_generadas VALUES("
+                    + "\"" + tmg.getid() + "\", "
+                    + "\"" + tmg.getfolio() + "\", "
+                    + "\"" + tmg.getnombres() + "\", "
+                    + "\"" + tmg.getapellido_pat() + "\", "
+                    + "\"" + tmg.getapellido_mat() + "\", "
+                    + "\"" + tmg.getdomicilio() + "\","
+                    + "\"" + tmg.getplaca_vehiculo() + "\","
+                    + "\"" + tmg.getmarca_vehiculo() + "\","
+                    + "\"" + tmg.getnserie_vehiculo() + "\","
+                    + "\"" + tmg.getmodelo_vehiculo() + "\","
+                    + "\"" + tmg.getlimite_pago() + "\","
+                    + "\"" + tmg.getcreated_by() + "\","
+                    + "\"" + tmg.getcreated_at() + "\","
+                    + "\"" + tmg.getupdated_at() + "\","
+                    + "\"" + tmg.getid_multa()+ "\")";
+            //Inica el statement de la conexión
+            System.out.println(Query);
+            Statement st = Conexion.createStatement();
+            st.executeUpdate(Query);
+            operacionExitosa = 1;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            operacionExitosa = 0;
+        }
+        return operacionExitosa;
+    }
+
 }
