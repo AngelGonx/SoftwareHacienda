@@ -270,25 +270,25 @@ public class ControladorBaseDeDatos {
 
 //    Función: Inserta a la base de datos un nuevo formato de multa.
 //    Aut@r: Ángel González Rincón  
-    public int formatoMulta(TablaMultasGeneradas tmg, TablaMultas tm) {
+    public int formatoMulta(TablaMultasGeneradas tmg) {
         int operacionExitosa = 0;
         try {
             String Query = "INSERT INTO  tabla_multas_generadas VALUES("
-                    + "\"" + tmg.getid() + "\", "
-                    + "\"" + tmg.getfolio() + "\", "
-                    + "\"" + tmg.getnombres() + "\", "
-                    + "\"" + tmg.getapellido_pat() + "\", "
-                    + "\"" + tmg.getapellido_mat() + "\", "
-                    + "\"" + tmg.getdomicilio() + "\","
-                    + "\"" + tmg.getplaca_vehiculo() + "\","
-                    + "\"" + tmg.getmarca_vehiculo() + "\","
-                    + "\"" + tmg.getnserie_vehiculo() + "\","
-                    + "\"" + tmg.getmodelo_vehiculo() + "\","
-                    + "\"" + tmg.getlimite_pago() + "\","
-                    + "\"" + tmg.getcreated_by() + "\","
-                    + "\"" + tmg.getcreated_at() + "\","
-                    + "\"" + tmg.getupdated_at() + "\","
-                    + "\"" + tmg.getid_multa()+ "\")";
+                    + "\"" + tmg.getId()+ "\", "
+                    + "\"" + tmg.getFolio()+ "\", "
+                    + "\"" + tmg.getNombres()+ "\", "
+                    + "\"" + tmg.getApellido_pat()+ "\", "
+                    + "\"" + tmg.getApellido_mat()+ "\", "
+                    + "\"" + tmg.getDomicilio()+ "\","
+                    + "\"" + tmg.getPlaca_vehiculo()+ "\","
+                    + "\"" + tmg.getMarca_vehiculo()+ "\","
+                    + "\"" + tmg.getNserie_vehiculo()+ "\","
+                    + "\"" + tmg.getModelo_vehiculo()+ "\","
+                    + "\"" + tmg.getLimite_pago()+ "\","
+                    + "\"" + tmg.getCreated_by()+ "\","
+                    + "\"" + tmg.getCreated_at()+ "\","
+                    + "\"" + tmg.getUpdated_at()+ "\","
+                    + "\"" + tmg.getId_multa()+ "\")";
             //Inica el statement de la conexión
             System.out.println(Query);
             Statement st = Conexion.createStatement();

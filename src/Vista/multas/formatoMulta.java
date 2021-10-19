@@ -204,7 +204,7 @@ public class formatoMulta extends javax.swing.JFrame {
                 guardarImprimirMouseClicked(evt);
             }
         });
-        jPanel1.add(guardarImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 160, 30));
+        jPanel1.add(guardarImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 840, 160, 30));
 
         jLabel16.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel16.setText("L.C CRISTIAN MARTÍNEZ GONZÁLEZ");
@@ -228,7 +228,7 @@ public class formatoMulta extends javax.swing.JFrame {
         entrarButton2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         entrarButton2.setText("Guardar e imprimir");
         entrarButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(entrarButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 160, 30));
+        jPanel1.add(entrarButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 840, 160, 30));
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/calendario.png"))); // NOI18N
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, -1, -1));
@@ -445,7 +445,7 @@ public class formatoMulta extends javax.swing.JFrame {
     private void guardarImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarImprimirMouseClicked
         int value = 0;
         Timestamp instant= Timestamp.from(Instant.now());
-        int mul = tbm.getId();
+        int mul = id;
         String nombreMulta = campoNombreMulta.getText();
         String nombres = campoNombres.getText();
         String apPat = campoApPat.getText();
@@ -499,24 +499,34 @@ public class formatoMulta extends javax.swing.JFrame {
         if (value > 0) {
             JOptionPane.showMessageDialog(null, "Es necesario llenar todos los datos.");
         } else {
-            tmg.setfolio(nombreMulta);
-            tmg.setcreated_at(instant);
-            tmg.setupdated_at(instant);
-            tmg.setnombres(nombres);
-            tmg.setapellido_pat(apPat);
-            tmg.setapellido_mat(apMat);
-            tmg.setdomicilio(domicilio);
-            tmg.setplaca_vehiculo(placa);
-            tmg.setnserie_vehiculo(serie);
-            tmg.setmarca_vehiculo(marca);
-            tmg.setmodelo_vehiculo(modelo);
-            tmg.setlimite_pago(limite_pago);
-            tmg.setcreated_by(tbu.getUsername());
-            tmg.setid_multa(mul);
+            tmg.setId(numeroFactura);//Aqui faltaba el numero de factura
+            tmg.setFolio(nombreMulta);
+            tmg.setCreated_at(instant);
+            tmg.setUpdated_at(instant);
+            tmg.setNombres(nombres);
+            tmg.setApellido_pat(apPat);
+            tmg.setApellido_mat(apMat);
+            tmg.setDomicilio(domicilio);
+            tmg.setPlaca_vehiculo(placa);
+            tmg.setNserie_vehiculo(serie);
+            tmg.setMarca_vehiculo(marca);
+            tmg.setModelo_vehiculo(modelo);
+            tmg.setLimite_pago(limite_pago);
+            tmg.setCreated_by(tbu.getUsername());
+            tmg.setId_multa(mul);
 
             cbd.openConnection();
-            int operacionExitosa = cbd.formatoMulta(tmg, tm);
+            int operacionExitosa = cbd.formatoMulta(tmg);
             cbd.closeConnection();
+            if(operacionExitosa == 1){
+                JOptionPane.showMessageDialog(null, "La factura fue generada exitosamente.");
+                this.dispose();
+                //  Aqui ira el proceso del reporte.
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "La factura no fue generada, verifica con el administrador.");
+                this.dispose();
+            }
         }
 
     }//GEN-LAST:event_guardarImprimirMouseClicked
@@ -524,37 +534,37 @@ public class formatoMulta extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(formatoMulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(formatoMulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(formatoMulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(formatoMulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new formatoMulta().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(formatoMulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(formatoMulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(formatoMulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(formatoMulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new formatoMulta().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField campoApMat;
