@@ -11,6 +11,7 @@ import Modelo.TablaMultas;
 import Modelo.TablaUsuario;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,8 +32,8 @@ public class formatoMulta extends javax.swing.JFrame {
     public formatoMulta() {
         initComponents();
     }
-    
-    public formatoMulta(TablaUsuario tbu,TablaMultas tm) {
+
+    public formatoMulta(TablaUsuario tbu, TablaMultas tm) {
         initComponents();
         Date dt = new Date();
         String fecha = cu.convertirFechaDict(dt);
@@ -40,7 +41,7 @@ public class formatoMulta extends javax.swing.JFrame {
         c.setTime(dt);
         c.add(Calendar.DATE, 15); //Aumenta 15 dias el vencimiento de la factura
         dt = c.getTime();
-        System.out.println("Tomorrow: "+dt);
+        System.out.println("Tomorrow: " + dt);
         this.id = tm.getId();
         System.out.println(tm.getId());
         campoFechaActual.setText(fecha);
@@ -48,13 +49,13 @@ public class formatoMulta extends javax.swing.JFrame {
         campoFechaVencimiento.setText(fechaV);
         campoConceptoPago.setText(tm.getConcepto_pago());
         campoNombreMulta.setText(tm.getNombre());
-        campoTotalPagar.setText("$"+tm.getPrecio()+".00");
+        campoTotalPagar.setText("$" + tm.getPrecio() + ".00");
         campoUsuarioActual.setText(tbu.getUsername());
         cbd.openConnection();
         numeroFactura = cbd.obtenerNumeroFactura();
         cbd.closeConnection();
-        campoFactura.setText("No. Factura: "+numeroFactura);
-        
+        campoFactura.setText("No. Factura: " + numeroFactura);
+
     }
 
     /**
@@ -88,17 +89,17 @@ public class formatoMulta extends javax.swing.JFrame {
         campoFactura = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        campoNombres = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        campoApPat = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        campoDomicilio = new javax.swing.JTextField();
+        campoApMat = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
+        campoPlaca = new javax.swing.JTextField();
+        campoSerie = new javax.swing.JTextField();
+        campoMarca = new javax.swing.JTextField();
+        campoModelo = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -140,7 +141,7 @@ public class formatoMulta extends javax.swing.JFrame {
 
         jTextField3.setEditable(false);
         jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1080, 750, 40));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 880, 750, 40));
 
         jPanel2.setBackground(new java.awt.Color(255, 225, 76));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 3, 0, 0, new java.awt.Color(0, 0, 0)));
@@ -170,18 +171,18 @@ public class formatoMulta extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 270, 50));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 270, 50));
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel4.setText("Vehículo:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
 
         regresar_b.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 regresar_bMouseClicked(evt);
             }
         });
-        jPanel1.add(regresar_b, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 1020, 110, 30));
+        jPanel1.add(regresar_b, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 840, 110, 30));
 
         entrarButton.setEditable(false);
         entrarButton.setBackground(new java.awt.Color(191, 144, 0));
@@ -190,29 +191,29 @@ public class formatoMulta extends javax.swing.JFrame {
         entrarButton.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         entrarButton.setText("Regresar");
         entrarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 1020, 110, 30));
+        jPanel1.add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 840, 110, 30));
 
         jLabel16.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel16.setText("L.C CRISTIAN MARTÍNEZ GONZÁLEZ");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 940, -1, 30));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 760, -1, 30));
 
         jLabel18.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel18.setText("Jefe general de hacienda");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 970, -1, 30));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 790, -1, 30));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 730, 610, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 610, 10));
 
         jLabel19.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel19.setText("Oficinas de hacienda del estado en Juchique");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 910, -1, 30));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 730, -1, 30));
 
         guardarImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 guardarImprimirMouseClicked(evt);
             }
         });
-        jPanel1.add(guardarImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 1020, 160, 30));
+        jPanel1.add(guardarImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 510, 160, 30));
 
         entrarButton2.setEditable(false);
         entrarButton2.setBackground(new java.awt.Color(191, 144, 0));
@@ -221,116 +222,116 @@ public class formatoMulta extends javax.swing.JFrame {
         entrarButton2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         entrarButton2.setText("Guardar e imprimir");
         entrarButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(entrarButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 1020, 160, 30));
+        jPanel1.add(entrarButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 510, 160, 30));
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/calendario.png"))); // NOI18N
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 100, -1, -1));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, -1, -1));
 
         campoFechaActual.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         campoFechaActual.setToolTipText("");
         campoFechaActual.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(campoFechaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 160, 30));
+        jPanel1.add(campoFechaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, 160, 30));
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(191, 144, 0));
         jLabel5.setText("Multa-");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
 
         campoNombreMulta.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         campoNombreMulta.setForeground(new java.awt.Color(191, 144, 0));
         campoNombreMulta.setText("No usar cinturón de seguridad");
         campoNombreMulta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(campoNombreMulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 360, 40));
+        jPanel1.add(campoNombreMulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 360, 40));
 
         campoFactura.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         campoFactura.setText("No. Factura: 00245");
-        jPanel1.add(campoFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+        jPanel1.add(campoFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel7.setText("Comprobante de infracción");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel1.setText("Marca:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, -1, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, -1, 30));
 
-        jTextField4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField4.setToolTipText("");
-        jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 220, 30));
+        campoNombres.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoNombres.setToolTipText("");
+        campoNombres.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 220, 30));
 
         jLabel8.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel8.setText("Apellido paterno:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, -1, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, -1, 30));
 
-        jTextField6.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField6.setToolTipText("");
-        jTextField6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 220, 30));
+        campoApPat.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoApPat.setToolTipText("");
+        campoApPat.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoApPat, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 220, 30));
 
         jLabel9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel9.setText("Apellido materno:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, 30));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, 30));
 
-        jTextField7.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField7.setToolTipText("");
-        jTextField7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 220, 30));
+        campoDomicilio.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoDomicilio.setToolTipText("");
+        campoDomicilio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, 220, 30));
 
-        jTextField8.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField8.setToolTipText("");
-        jTextField8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 220, 30));
+        campoApMat.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoApMat.setToolTipText("");
+        campoApMat.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoApMat, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 220, 30));
 
         jLabel10.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel10.setText("Domicilio:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, -1, 30));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, -1, 30));
 
-        jTextField9.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField9.setToolTipText("");
-        jTextField9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, 220, 30));
+        campoPlaca.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoPlaca.setToolTipText("");
+        campoPlaca.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 220, 30));
 
-        jTextField10.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField10.setToolTipText("");
-        jTextField10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 180, 30));
+        campoSerie.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoSerie.setToolTipText("");
+        campoSerie.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 180, 30));
 
-        jTextField11.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField11.setToolTipText("");
-        jTextField11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 220, 30));
+        campoMarca.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoMarca.setToolTipText("");
+        campoMarca.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 220, 30));
 
-        jTextField12.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField12.setToolTipText("");
-        jTextField12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 450, 180, 30));
+        campoModelo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoModelo.setToolTipText("");
+        campoModelo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 180, 30));
 
         jLabel11.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel11.setText("Propietario:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel12.setText("Nombres: ");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, 30));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, 30));
 
         jLabel13.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel13.setText("Placa:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, -1, 30));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, -1, 30));
 
         jLabel14.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel14.setText("Modelo:");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 60, 30));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, 60, 30));
 
         jLabel15.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel15.setText("N. serie:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, 60, 30));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, 60, 30));
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel17.setText("  Concepto de pago");
         jLabel17.setOpaque(true);
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 490, 150, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 150, -1));
 
         campoConceptoPago.setColumns(20);
         campoConceptoPago.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -338,22 +339,22 @@ public class formatoMulta extends javax.swing.JFrame {
         campoConceptoPago.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jScrollPane1.setViewportView(campoConceptoPago);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, 590, 120));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 590, 60));
 
         campoTotalPagar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         campoTotalPagar.setText(" $868.80");
         campoTotalPagar.setToolTipText("");
         campoTotalPagar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(campoTotalPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 650, 180, 30));
+        jPanel1.add(campoTotalPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 510, 180, 30));
 
         campoFechaVencimiento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         campoFechaVencimiento.setText(" 28-sep-2021");
         campoFechaVencimiento.setToolTipText("");
         campoFechaVencimiento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(campoFechaVencimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 690, 180, 30));
+        jPanel1.add(campoFechaVencimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 550, 180, 30));
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 640, 610, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, 610, 10));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
@@ -403,18 +404,18 @@ public class formatoMulta extends javax.swing.JFrame {
         jLabel31.setText("Walmart");
         jPanel3.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 200, 20));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 740, 460, 150));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 600, 460, 130));
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 970, 340, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 790, 340, 10));
 
         jLabel23.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel23.setText("Límite de pago:");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 690, 140, 30));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 550, 140, 30));
 
         jLabel24.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel24.setText("Total a pagar:");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 650, 140, 30));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, 140, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -424,7 +425,7 @@ public class formatoMulta extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -436,7 +437,63 @@ public class formatoMulta extends javax.swing.JFrame {
     }//GEN-LAST:event_regresar_bMouseClicked
 
     private void guardarImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarImprimirMouseClicked
+        int value = 0;
+        String fechaActual = campoFechaActual.getText();
+        String nombreMulta = campoNombreMulta.getText();
+        String nombres = campoNombres.getText();
+        String apPat = campoApPat.getText();
+        String apMat = campoApMat.getText();
+        String domicilio = campoDomicilio.getText();
+        String placa = campoPlaca.getText();
+        String serie = campoSerie.getText();
+        String marca = campoMarca.getText();
+        String modelo = campoModelo.getText();
+        String totalPagar = campoTotalPagar.getText();
+        String fechaVenc = campoFechaVencimiento.getText();
 
+        
+        if (fechaActual == "") {
+            value++;
+        }
+        if (nombreMulta == "") {
+            value++;
+        }
+        if (nombres == "") {
+            value++;
+        }
+        if (apPat == "") {
+            value++;
+        }
+        if (apMat == "") {
+            value++;
+        }
+        if (domicilio == "") {
+            value++;
+        }
+        if (placa == "") {
+            value++;
+        }
+        if (serie == "") {
+            value++;
+        }
+        if (marca == "") {
+            value++;
+        }
+        if (modelo == "") {
+            value++;
+        }
+        if (totalPagar == "") {
+            value++;
+        }
+        if (fechaVenc == "") {
+            value++;
+        }
+        
+        if(value > 0){   
+            JOptionPane.showMessageDialog(null, "Es necesario llenar todos los datos.");
+        }else{
+            
+        }
     }//GEN-LAST:event_guardarImprimirMouseClicked
 
     /**
@@ -475,11 +532,19 @@ public class formatoMulta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField campoApMat;
+    private javax.swing.JTextField campoApPat;
     private javax.swing.JTextArea campoConceptoPago;
+    private javax.swing.JTextField campoDomicilio;
     private javax.swing.JLabel campoFactura;
     private javax.swing.JTextField campoFechaActual;
     private javax.swing.JTextField campoFechaVencimiento;
+    private javax.swing.JTextField campoMarca;
+    private javax.swing.JTextField campoModelo;
     private javax.swing.JTextField campoNombreMulta;
+    private javax.swing.JTextField campoNombres;
+    private javax.swing.JTextField campoPlaca;
+    private javax.swing.JTextField campoSerie;
     private javax.swing.JTextField campoTotalPagar;
     private javax.swing.JLabel campoUsuarioActual;
     private javax.swing.JTextField entrarButton;
@@ -522,16 +587,8 @@ public class formatoMulta extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel regresar_b;
     // End of variables declaration//GEN-END:variables
 }
