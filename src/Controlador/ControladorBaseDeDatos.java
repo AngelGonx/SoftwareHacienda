@@ -5,10 +5,10 @@
  */
 package Controlador;
 
+import Modelo.TablaLicenciaGenerada;
 import Modelo.TablaMultas;
 import Modelo.TablaMultasGeneradas;
 import Modelo.TablaUsuario;
-import Vista.multas.formatoMulta;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,7 +18,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -299,6 +298,44 @@ public class ControladorBaseDeDatos {
             Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
             operacionExitosa = 0;
         }
+        return operacionExitosa;
+    }
+    
+    /*Nombre: Clase crearLicenciaGenerada
+    Función: Crea las licencias nuevas para los automovilistas
+    Aut@r: José Luis Caamal Ic
+    Parametros: */
+    public int crearLicenciaGenerada(TablaLicenciaGenerada tlg) {
+        int operacionExitosa = 0;
+        try {
+            String Query = "INSERT INTO  tabla_licencia_generada VALUES("
+                    + "default, "
+                    + "\"" + tlg.getNombres()+ "\", "
+                    + "\"" + tlg.getApellido_pat()+ "\", "
+                    + "\"" + tlg.getApellido_mat()+ "\", "
+                    + "\"" + tlg.getEdad() + "\", "
+                    + "\"" + tlg.getDomicilio()+ "\","
+                    + "\"" + tlg.getFecha_nac()+ "\","
+                    + "\"" + tlg.getCp()+ "\","
+                    + "\"" + tlg.getLugar()+ "\","
+                    + "\"" + tlg.getCelular()+ "\","
+                    + "\"" + tlg.getCrated_by()+ "\","
+                    + "\"" + tlg.getCreated_at()+ "\","
+                    + "\"" + tlg.getUpdated_at()+ "\","
+                    + "\"" + tlg.getId_tipo_licencia()+ "\")";
+            //Inica el statement de la conexión
+            System.out.println(Query);
+            Statement st = Conexion.createStatement();
+            st.executeUpdate(Query);
+            operacionExitosa = 1;
+            //JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            operacionExitosa = 0;
+        }
+
         return operacionExitosa;
     }
 

@@ -5,6 +5,15 @@
  */
 package Vista.Licencias;
 
+import Controlador.ControladorBaseDeDatos;
+import Modelo.TablaLicenciaGenerada;
+import Modelo.TablaTipoLicencia;
+import Modelo.TablaUsuario;
+import Vista.Principal.menuPrincipal2;
+import java.sql.Timestamp;
+import java.time.Instant;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
@@ -14,8 +23,21 @@ public class agregarLicencia extends javax.swing.JFrame {
     /**
      * Creates new form agregarLicencia
      */
+    TablaUsuario tbu = new TablaUsuario();
+    TablaTipoLicencia ttl = new TablaTipoLicencia();
+    TablaLicenciaGenerada tlg = new TablaLicenciaGenerada();
+    ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
     public agregarLicencia() {
         initComponents();
+    }
+    public agregarLicencia(TablaUsuario tbu,TablaTipoLicencia ttl) {
+        initComponents();
+        this.tbu = tbu;
+        this.ttl = ttl;
+        campoUsuarioActual.setText(tbu.getUsername());
+        campoCosto.setText(ttl.getCosto());
+        campoConceptoCobro.setText(ttl.getConcepto_cobro());
+        campoTipoLicencia.setText(ttl.getConcepto_cobro());
     }
 
     /**
@@ -32,32 +54,32 @@ public class agregarLicencia extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        campoUsuarioActual = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        campoTipoLicencia = new javax.swing.JLabel();
         guardarImprimir = new javax.swing.JLabel();
         entrarButton = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        campoNombres = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        campoApellidoPaterno = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        campoFechaNacimiento = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        campoDomicilio = new javax.swing.JTextField();
+        campoApellidoMaterno = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        campoCP = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        campoEdad = new javax.swing.JSpinner();
         jLabel12 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
+        campoCelular = new javax.swing.JTextField();
+        campoLugar = new javax.swing.JTextField();
+        campoCosto = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        campoConceptoCobro = new javax.swing.JTextArea();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -88,8 +110,8 @@ public class agregarLicencia extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/iconoPerfilPeque_1.png"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        jLabel3.setText("Usuario");
+        campoUsuarioActual.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        campoUsuarioActual.setText("Usuario");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -99,7 +121,7 @@ public class agregarLicencia extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addComponent(campoUsuarioActual, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -107,7 +129,7 @@ public class agregarLicencia extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(campoUsuarioActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -117,9 +139,9 @@ public class agregarLicencia extends javax.swing.JFrame {
         jLabel1.setText("Nombres: ");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, 30));
 
-        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jLabel4.setText("Nueva licencia tipo A");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 150, -1));
+        campoTipoLicencia.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        campoTipoLicencia.setText("Nueva licencia tipo A");
+        jPanel1.add(campoTipoLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 150, -1));
 
         guardarImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -142,51 +164,51 @@ public class agregarLicencia extends javax.swing.JFrame {
         jLabel5.setText("Licencias");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField1.setToolTipText("");
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 220, 30));
+        campoNombres.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoNombres.setToolTipText("");
+        campoNombres.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 220, 30));
 
         jLabel6.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel6.setText("Apellido paterno:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, -1, 30));
 
-        jTextField4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField4.setToolTipText("");
-        jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 220, 30));
+        campoApellidoPaterno.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoApellidoPaterno.setToolTipText("");
+        campoApellidoPaterno.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 220, 30));
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel7.setText("Apellido materno:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, 30));
 
-        jTextField5.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField5.setToolTipText("");
-        jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 160, 30));
+        campoFechaNacimiento.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoFechaNacimiento.setToolTipText("");
+        campoFechaNacimiento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 160, 30));
 
         jLabel8.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel8.setText("Fecha de nacimiento:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 310, 160, 30));
 
-        jTextField6.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField6.setToolTipText("");
-        jTextField6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 220, 30));
+        campoDomicilio.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoDomicilio.setToolTipText("");
+        campoDomicilio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 220, 30));
 
-        jTextField7.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField7.setToolTipText("");
-        jTextField7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 220, 30));
+        campoApellidoMaterno.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoApellidoMaterno.setToolTipText("");
+        campoApellidoMaterno.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 220, 30));
 
         jLabel9.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel9.setText("Domicilio:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, 30));
 
-        jTextField8.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField8.setToolTipText("");
-        jTextField8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 140, 30));
+        campoCP.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoCP.setToolTipText("");
+        campoCP.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoCP, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 140, 30));
 
         jLabel10.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel10.setText("Edad:");
@@ -196,27 +218,27 @@ public class agregarLicencia extends javax.swing.JFrame {
         jLabel11.setText("CP:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, 30));
 
-        jSpinner1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jSpinner1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 60, 30));
+        campoEdad.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        campoEdad.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 60, 30));
 
         jLabel12.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel12.setText("Lugar:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, -1, 30));
 
-        jTextField9.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField9.setToolTipText("");
-        jTextField9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, 220, 30));
+        campoCelular.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoCelular.setToolTipText("");
+        campoCelular.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, 220, 30));
 
-        jTextField10.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField10.setToolTipText("");
-        jTextField10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 220, 30));
+        campoLugar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoLugar.setToolTipText("");
+        campoLugar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.add(campoLugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 220, 30));
 
-        jLabel13.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jLabel13.setText("1,801.00");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 640, -1, 30));
+        campoCosto.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        campoCosto.setText("1,801.00");
+        jPanel1.add(campoCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 640, -1, 30));
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
@@ -224,11 +246,11 @@ public class agregarLicencia extends javax.swing.JFrame {
         jLabel14.setOpaque(true);
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 490, 150, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jScrollPane1.setViewportView(jTextArea1);
+        campoConceptoCobro.setColumns(20);
+        campoConceptoCobro.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        campoConceptoCobro.setRows(5);
+        campoConceptoCobro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jScrollPane1.setViewportView(campoConceptoCobro);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 500, 120));
 
@@ -273,52 +295,99 @@ public class agregarLicencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarImprimirMouseClicked
-
+        if(!campoNombres.getText().equals("") && !campoApellidoMaterno.getText().equals("") && !campoApellidoPaterno.getText().equals("")
+                && !campoCP.getText().equals("") && !campoCelular.getText().equals("") && !campoLugar.getText().equals("") &&
+                !campoDomicilio.getText().equals("") && !campoFechaNacimiento.getText().equals("")){
+            
+            Timestamp instant= Timestamp.from(Instant.now());
+            tlg.setNombres(campoNombres.getText());
+            tlg.setApellido_mat(campoApellidoMaterno.getText());
+            tlg.setApellido_pat(campoApellidoPaterno.getText());
+            tlg.setCelular(campoCelular.getText());
+            tlg.setDomicilio(campoDomicilio.getText());
+            tlg.setCrated_by(tbu.getUsername());
+            tlg.setCp(campoCP.getText());
+            tlg.setFecha_nac(campoFechaNacimiento.getText());
+            tlg.setId_tipo_licencia(ttl.getId());
+            tlg.setEdad(String.valueOf(campoEdad.getValue()));
+            tlg.setCreated_at(instant);
+            tlg.setUpdated_at(instant);
+            tlg.setLugar(campoLugar.getText());
+            //Se realiza el insert de los campos de las licencias y despues se imprime el documento
+            cbd.openConnection();
+            int operacionExitosa = cbd.crearLicenciaGenerada(tlg);
+            cbd.closeConnection();
+            if(operacionExitosa == 1){
+                JOptionPane.showMessageDialog(null, "Licencia Guardada Exitosamente.");
+                this.dispose();
+                menuPrincipal2 mp2 = new menuPrincipal2(tbu);
+                mp2.show();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No se pudo guardar la multa. Consulta al administrador.");
+            }
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Por favor, llena todos los campos para continuar.");
+        }
     }//GEN-LAST:event_guardarImprimirMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new agregarLicencia().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new agregarLicencia().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField campoApellidoMaterno;
+    private javax.swing.JTextField campoApellidoPaterno;
+    private javax.swing.JTextField campoCP;
+    private javax.swing.JTextField campoCelular;
+    private javax.swing.JTextArea campoConceptoCobro;
+    private javax.swing.JLabel campoCosto;
+    private javax.swing.JTextField campoDomicilio;
+    private javax.swing.JSpinner campoEdad;
+    private javax.swing.JTextField campoFechaNacimiento;
+    private javax.swing.JTextField campoLugar;
+    private javax.swing.JTextField campoNombres;
+    private javax.swing.JLabel campoTipoLicencia;
+    private javax.swing.JLabel campoUsuarioActual;
     private javax.swing.JTextField entrarButton;
     private javax.swing.JLabel guardarImprimir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -327,8 +396,6 @@ public class agregarLicencia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -338,17 +405,7 @@ public class agregarLicencia extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

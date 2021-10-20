@@ -5,8 +5,11 @@
  */
 package Vista.Licencias;
 
+import Modelo.TablaTipoLicencia;
 import Vista.Principal.menuPrincipal2;
 import Modelo.TablaUsuario;
+import java.sql.Timestamp;
+import java.time.Instant;
 import javax.swing.ButtonGroup;
 /**
  *
@@ -18,7 +21,8 @@ public class licenciasLista extends javax.swing.JFrame {
      * Creates new form licenciasLista
      */
     TablaUsuario tbu = new TablaUsuario();
-    
+    TablaTipoLicencia ttl = new TablaTipoLicencia();
+    int idTipoLicencia = 0;
     public licenciasLista() {
         initComponents();
     }
@@ -182,20 +186,34 @@ public class licenciasLista extends javax.swing.JFrame {
         if(btnTipoA.isSelected()){
             conceptoPago = "Licencia de Tipo A";
             precioLicencia = "$1,858.00";
+            idTipoLicencia = 1;
         }
         if(btnTipoB.isSelected()){
             conceptoPago = "Licencia de Tipo B";
             precioLicencia = "$1,748.00";
+            idTipoLicencia = 2;
         }
         if(btnTipoC.isSelected()){
             conceptoPago = "Licencia de Tipo C";
             precioLicencia = "$1,530.00";
+            idTipoLicencia = 3;
         }
         if(btnTipoD.isSelected()){
             conceptoPago = "Licencia de Tipo D";
             precioLicencia = "$1,093.00";
+            idTipoLicencia = 4;
         }
+        Timestamp instant= Timestamp.from(Instant.now());  //Toma la información de hoy
+        ttl.setId(idTipoLicencia);
+        ttl.setConcepto_cobro(conceptoPago);
+        ttl.setCosto(precioLicencia);
+        ttl.setCreated_by(tbu.getUsername());
+        ttl.setCreated_at(instant);
+        ttl.setUpdated_at(instant);
         //Esto podria agilizarse pero al ser solo 4 casos de prueba no es necesario
+        agregarLicencia alic = new agregarLicencia(tbu,ttl);
+        alic.show();
+        this.dispose();
     }//GEN-LAST:event_btnAceptarMouseClicked
 
     private void regresar_b1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresar_b1MouseClicked
