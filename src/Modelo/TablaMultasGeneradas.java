@@ -29,22 +29,22 @@ public TablaMultasGeneradas(){
 }
 	
 public TablaMultasGeneradas(int id,String folio,String nombres,String apellido_pat,String apellido_mat,String domicilio,String placa_vehiculo,String marca_vehiculo,String nserie_vehiculo,String modelo_vehiculo,String limite_pago,String created_by,Timestamp created_at,Timestamp updated_at,int id_multa,String KEY,){
-	this.id;
-	this.folio;
-	this.nombres;
-	this.apellido_pat;
-	this.apellido_mat;
-	this.domicilio;
-	this.placa_vehiculo;
-	this.marca_vehiculo;
-	this.nserie_vehiculo;
-	this.modelo_vehiculo;
-	this.limite_pago;
-	this.created_by;
-	this.created_at;
-	this.updated_at;
-	this.id_multa;
-	this.KEY;
+	this.id = id;
+	this.folio = folio;
+	this.nombres = nombres;
+	this.apellido_pat = apellido_pat;
+	this.apellido_mat = apellido_mat;
+	this.domicilio = domicilio;
+	this.placa_vehiculo = placa_vehiculo;
+	this.marca_vehiculo = marca_vehiculo;
+	this.nserie_vehiculo = nserie_vehiculo;
+	this.modelo_vehiculo = modelo_vehiculo;
+	this.limite_pago = limite_pago;
+	this.created_by = created_by;
+	this.created_at = created_at;
+	this.updated_at = updated_at;
+	this.id_multa = id_multa;
+	this.KEY = KEY;
 }
 
 // setters and getters for TablaMultasGeneradas
