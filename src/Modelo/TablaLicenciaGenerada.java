@@ -151,7 +151,7 @@ public void setcreated_at(String created_at){
 }
 
 // getter method for 'created_at'
-public String getcreated_at(String created_at){
+public Timestamp  getcreated_at(String created_at){
     return this.created_at = created_at;
 }
 // setter method for 'updated_at'
@@ -160,7 +160,7 @@ public void setupdated_at(String updated_at){
 }
 
 // getter method for 'updated_at'
-public String getupdated_at(String updated_at){
+public Timestamp  getupdated_at(String updated_at){
     return this.updated_at = updated_at;
 }
 // setter method for 'id_tipo_licencia'
