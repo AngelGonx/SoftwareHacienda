@@ -18,13 +18,13 @@ public TablaMultas(){
 }
 
 public TablaMultas(int id,String nombre,String concepto_pago,String precio,String created_by,Timestamp created_at,Timestamp updated_at,){
-	this.id;
-	this.nombre;
-	this.concepto_pago;
-	this.precio;
-	this.created_by;
-	this.created_at;
-	this.updated_at;
+	this.id = id;
+	this.nombre = nombre;
+	this.concepto_pago = concepto_pago;
+	this.precio = precio;
+	this.created_by = created_by;
+	this.created_at = created_at;
+	this.updated_at = updated_at;
 }
 
 // setters and getters for TablaMultas
