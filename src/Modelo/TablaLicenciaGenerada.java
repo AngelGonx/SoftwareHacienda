@@ -28,21 +28,21 @@ public TablaLicenciaGenerada(){
 }
 
 public TablaLicenciaGenerada(int id,String nombres,String apellido_pat,String apellido_mat,String edad,String domicilio,String fecha_nac,String cp,String lugar,String celular,String crated_by,Timestamp created_at,Timestamp updated_at,id_tipo_licencia,String KEY){
-	this.id;
-	this.nombres;
-	this.apellido_pat;
-	this.apellido_mat;
-	this.edad;
-	this.domicilio;
-	this.fecha_nac;
-	this.cp;
-	this.lugar;
-	this.celular;
-	this.crated_by;
-	this.created_at;
-	this.updated_at;
-	this.id_tipo_licencia;
-	this.KEY;
+	this.id = id;
+	this.nombres = nombres;
+	this.apellido_pat = apellido_pat;
+	this.apellido_mat = apellido_mat;
+	this.edad = edad;
+	this.domicilio = domicilio;
+	this.fecha_nac = fecha_nac;
+	this.cp = cp;
+	this.lugar = lugar;
+	this.celular = celular;
+	this.crated_by = crated_by;
+	this.created_at = created_at;
+	this.updated_at = updated_at;
+	this.id_tipo_licencia = id_tipo_licencia;
+	this.KEY = KEY;
 }
 // setters and getters for TablaLicenciaGenerada
 
