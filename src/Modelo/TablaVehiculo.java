@@ -1,6 +1,10 @@
 package Modelo
 //created on 16-10-2021 at 8:11:22
 //class 'TablaVehiculo'
+
+import java.sql.Timestamp;
+
+
 public class TablaVehiculo{
 // variables for TablaVehiculo
 
@@ -11,8 +15,23 @@ public class TablaVehiculo{
 	private String tenencia;
 	private String placas;
 	private String transmision;
-	private String created_at;
-	private String updated_at;
+	private Timestamp created_at;
+	private Timestamp updated_at;
+
+public TablaVehiculo(){
+}
+
+public TablaVehiculo(int id,String marca,String modelo,String ano,String tenencia,String placas,String transmision,Timestamp created_at,Timestamp updated_at,){
+	this.id = id;
+	this.marca = marca;
+	this.modelo = modelo;
+	this.ano = ano;
+	this.tenencia = tenencia;
+	this.placas = placas;
+	this.transmision = transmision;
+	this.created_at = created_at;
+	this.updated_at = updated_at;
+}
 
 
 // setters and getters for TablaVehiculo
@@ -86,7 +105,7 @@ public void setcreated_at(String created_at){
 }
 
 // getter method for 'created_at'
-public String getcreated_at(String created_at){
+public Timestamp getcreated_at(String created_at){
     return this.created_at = created_at;
 }
 // setter method for 'updated_at'
@@ -95,7 +114,7 @@ public void setupdated_at(String updated_at){
 }
 
 // getter method for 'updated_at'
-public String getupdated_at(String updated_at){
+public Timestamp getupdated_at(String updated_at){
     return this.updated_at = updated_at;
 }
 
