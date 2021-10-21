@@ -1,6 +1,8 @@
 package Modelo
 //created on 16-10-2021 at 8:11:22
 //class 'TablaTipoLicencia'
+import java.sql.Timestamp;
+
 public class TablaTipoLicencia{
 // variables for TablaTipoLicencia
 
@@ -8,9 +10,20 @@ public class TablaTipoLicencia{
 	private String concepto_cobro;
 	private String costo;
 	private String created_by;
-	private String created_at;
-	private String updated_at;
+	private Timestamp created_at;
+	private Timestamp updated_at;
 
+public TablaTipoLicencia(){
+}
+
+public TablaTipoLicencia(int id,String concepto_cobro,String costo,String created_by,Timestamp created_at,Timestamp updated_at,){
+	this.id = id;
+	this.concepto_cobro = concepto_cobro;
+	this.costo = costo;
+	this.created_by = created_by;
+	this.created_at = created_at;
+	this.updated_at = updated_at;
+}
 
 // setters and getters for TablaTipoLicencia
 
@@ -56,7 +69,7 @@ public void setcreated_at(String created_at){
 }
 
 // getter method for 'created_at'
-public String getcreated_at(String created_at){
+public Timestamp getcreated_at(String created_at){
     return this.created_at = created_at;
 }
 // setter method for 'updated_at'
@@ -65,7 +78,7 @@ public void setupdated_at(String updated_at){
 }
 
 // getter method for 'updated_at'
-public String getupdated_at(String updated_at){
+public Timestamp getupdated_at(String updated_at){
     return this.updated_at = updated_at;
 }
 
