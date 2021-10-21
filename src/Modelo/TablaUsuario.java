@@ -1,6 +1,10 @@
 package Modelo
 //created on 16-10-2021 at 8:11:22
 //class 'TablaUsuario'
+
+import java.sql.Timestamp;
+
+
 public class TablaUsuario{
 // variables for TablaUsuario
 
@@ -8,8 +12,20 @@ public class TablaUsuario{
 	private String name;
 	private String username;
 	private String password;
-	private String created_at;
-	private String update_at;
+	private Timestamp created_at;
+	private Timestamp update_at;
+
+public TablaUsuario(){
+}
+
+public TablaUsuario(int id,String name,String username,String password,Timestamp created_at,Timestamp update_at,){
+	this.id = id;
+	this.name = name;
+	this.username = username;
+	this.password = password;
+	this.created_at = created_at;
+	this.update_at = update_at;
+}
 
 
 // setters and getters for TablaUsuario
@@ -56,17 +72,17 @@ public void setcreated_at(String created_at){
 }
 
 // getter method for 'created_at'
-public String getcreated_at(String created_at){
+public Timestamp getcreated_at(String created_at){
     return this.created_at = created_at;
 }
-// setter method for 'update_at'
-public void setupdate_at(String update_at){
-    this.update_at = update_at;
+// setter method for 'updated_at'
+public void setupdated_at(String updated_at){
+    this.updated_at = updated_at;
 }
 
-// getter method for 'update_at'
-public String getupdate_at(String update_at){
-    return this.update_at = update_at;
+// getter method for 'updated_at'
+public Timestamp getupdated_at(String updated_at){
+    return this.updated_at = updated_at;
 }
 
 }
