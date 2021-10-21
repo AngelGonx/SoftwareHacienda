@@ -1,6 +1,9 @@
 package Modelo
 //created on 16-10-2021 at 8:11:22
 //class 'TablaMultasGeneradas'
+
+import java.sql.Timestamp;
+
 public class TablaMultasGeneradas{
 // variables for TablaMultasGeneradas
 
@@ -16,11 +19,33 @@ public class TablaMultasGeneradas{
 	private String modelo_vehiculo;
 	private String limite_pago;
 	private String created_by;
-	private String created_at;
-	private String updated_at;
+	private Timestamp created_at;
+	private Timestamp updated_at;
 	private int id_multa;
 	private String KEY;
 
+
+public TablaMultasGeneradas(){
+}
+	
+public TablaMultasGeneradas(int id,String folio,String nombres,String apellido_pat,String apellido_mat,String domicilio,String placa_vehiculo,String marca_vehiculo,String nserie_vehiculo,String modelo_vehiculo,String limite_pago,String created_by,Timestamp created_at,Timestamp updated_at,int id_multa,String KEY,){
+	this.id;
+	this.folio;
+	this.nombres;
+	this.apellido_pat;
+	this.apellido_mat;
+	this.domicilio;
+	this.placa_vehiculo;
+	this.marca_vehiculo;
+	this.nserie_vehiculo;
+	this.modelo_vehiculo;
+	this.limite_pago;
+	this.created_by;
+	this.created_at;
+	this.updated_at;
+	this.id_multa;
+	this.KEY;
+}
 
 // setters and getters for TablaMultasGeneradas
 
@@ -138,7 +163,7 @@ public void setcreated_at(String created_at){
 }
 
 // getter method for 'created_at'
-public String getcreated_at(String created_at){
+public Timestamp getcreated_at(String created_at){
     return this.created_at = created_at;
 }
 // setter method for 'updated_at'
@@ -147,7 +172,7 @@ public void setupdated_at(String updated_at){
 }
 
 // getter method for 'updated_at'
-public String getupdated_at(String updated_at){
+public Timestamp getupdated_at(String updated_at){
     return this.updated_at = updated_at;
 }
 // setter method for 'id_multa'
