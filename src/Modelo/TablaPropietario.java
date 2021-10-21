@@ -26,20 +26,20 @@ public TablaPropietario(){
 }
 	
 public TablaPropietario(int id,String nombres,String apellido_pat,String apellido_mat,String sexo,String edad,String domicilio,String lugar,String created_by,String updated_by,Timestamp created_at,Timestamp updated_at,int id_vehiculo,String KEY,){
-	this.id;
-	this.nombres;
-	this.apellido_pat;
-	this.apellido_mat;
-	this.sexo;
-	this.edad;
-	this.domicilio;
-	this.lugar;
-	this.created_by;
-	this.updated_by;
-	this.created_at;
-	this.updated_at;
-	this.id_vehiculo;
-	this.KEY;
+	this.id = id;
+	this.nombres = nombres;
+	this.apellido_pat = apellido_pat;
+	this.apellido_mat = apellido_mat;
+	this.sexo = sexo;
+	this.edad = edad;
+	this.domicilio = domicilio;
+	this.lugar = lugar;
+	this.created_by = created_by;
+	this.updated_by = updated_by;
+	this.created_at = created_at;
+	this.updated_at = updated_at;
+	this.id_vehiculo = id_vehiculo;
+	this.KEY = KEY;
 }
 
 // setters and getters for TablaPropietario
