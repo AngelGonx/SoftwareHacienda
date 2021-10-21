@@ -1,6 +1,9 @@
 package Modelo
 //created on 16-10-2021 at 8:11:22
 //class 'TablaLicenciaGenerada'
+
+import java.sql.Timestamp;
+
 public class TablaLicenciaGenerada{
 // variables for TablaLicenciaGenerada
 
@@ -15,12 +18,32 @@ public class TablaLicenciaGenerada{
 	private String lugar;
 	private String celular;
 	private String crated_by;
-	private String created_at;
-	private String updated_at;
+	private Timestamp created_at;
+	private Timestamp updated_at;
 	private int id_tipo_licencia;
 	private String KEY;
 
 
+public TablaLicenciaGenerada(){
+}
+
+public TablaLicenciaGenerada(int id,String nombres,String apellido_pat,String apellido_mat,String edad,String domicilio,String fecha_nac,String cp,String lugar,String celular,String crated_by,Timestamp created_at,Timestamp updated_at,id_tipo_licencia,String KEY){
+	this.id;
+	this.nombres;
+	this.apellido_pat;
+	this.apellido_mat;
+	this.edad;
+	this.domicilio;
+	this.fecha_nac;
+	this.cp;
+	this.lugar;
+	this.celular;
+	this.crated_by;
+	this.created_at;
+	this.updated_at;
+	this.id_tipo_licencia;
+	this.KEY;
+}
 // setters and getters for TablaLicenciaGenerada
 
 // setter method for 'id'
