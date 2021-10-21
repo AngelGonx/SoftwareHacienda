@@ -1,6 +1,8 @@
 package Modelo
 //created on 16-10-2021 at 8:11:22
 //class 'TablaMultas'
+import java.sql.Timestamp;
+
 public class TablaMultas{
 // variables for TablaMultas
 
@@ -9,9 +11,21 @@ public class TablaMultas{
 	private String concepto_pago;
 	private String precio;
 	private String created_by;
-	private String created_at;
-	private String updated_at;
+	private Timestamp created_at;
+	private Timestamp updated_at;
 
+public TablaMultas(){
+}
+
+public TablaMultas(int id,String nombre,String concepto_pago,String precio,String created_by,Timestamp created_at,Timestamp updated_at,){
+	this.id;
+	this.nombre;
+	this.concepto_pago;
+	this.precio;
+	this.created_by;
+	this.created_at;
+	this.updated_at;
+}
 
 // setters and getters for TablaMultas
 
@@ -66,7 +80,7 @@ public void setcreated_at(String created_at){
 }
 
 // getter method for 'created_at'
-public String getcreated_at(String created_at){
+public Timestamp getcreated_at(String created_at){
     return this.created_at = created_at;
 }
 // setter method for 'updated_at'
@@ -75,7 +89,7 @@ public void setupdated_at(String updated_at){
 }
 
 // getter method for 'updated_at'
-public String getupdated_at(String updated_at){
+public Timestamp getupdated_at(String updated_at){
     return this.updated_at = updated_at;
 }
 
