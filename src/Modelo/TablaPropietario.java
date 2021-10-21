@@ -1,6 +1,9 @@
 package Modelo
 //created on 16-10-2021 at 8:11:22
 //class 'TablaPropietario'
+
+import java.sql.Timestamp;
+
 public class TablaPropietario{
 // variables for TablaPropietario
 
@@ -14,11 +17,30 @@ public class TablaPropietario{
 	private String lugar;
 	private String created_by;
 	private String updated_by;
-	private String created_at;
-	private String updated_at;
+	private Timestamp created_at;
+	private Timestamp updated_at;
 	private int id_vehiculo;
 	private String KEY;
 
+public TablaPropietario(){
+}
+	
+public TablaPropietario(int id,String nombres,String apellido_pat,String apellido_mat,String sexo,String edad,String domicilio,String lugar,String created_by,String updated_by,Timestamp created_at,Timestamp updated_at,int id_vehiculo,String KEY,){
+	this.id;
+	this.nombres;
+	this.apellido_pat;
+	this.apellido_mat;
+	this.sexo;
+	this.edad;
+	this.domicilio;
+	this.lugar;
+	this.created_by;
+	this.updated_by;
+	this.created_at;
+	this.updated_at;
+	this.id_vehiculo;
+	this.KEY;
+}
 
 // setters and getters for TablaPropietario
 
@@ -118,7 +140,7 @@ public void setcreated_at(String created_at){
 }
 
 // getter method for 'created_at'
-public String getcreated_at(String created_at){
+public Timestamp getcreated_at(String created_at){
     return this.created_at = created_at;
 }
 // setter method for 'updated_at'
@@ -127,7 +149,7 @@ public void setupdated_at(String updated_at){
 }
 
 // getter method for 'updated_at'
-public String getupdated_at(String updated_at){
+public Timestamp getupdated_at(String updated_at){
     return this.updated_at = updated_at;
 }
 // setter method for 'id_vehiculo'
