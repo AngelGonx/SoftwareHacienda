@@ -10,12 +10,17 @@ import Controlador.ControladorUtilerias;
 import Modelo.TablaMultas;
 import Modelo.TablaMultasGeneradas;
 import Modelo.TablaUsuario;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 /**
  *
@@ -443,7 +448,17 @@ public class formatoMulta extends javax.swing.JFrame {
     }//GEN-LAST:event_regresar_bMouseClicked
 
     private void guardarImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarImprimirMouseClicked
-        int value = 0;
+        if(!campoNombres.getText().equals("") && !campoNombreMulta.getText().equals("") &&
+                        !campoApPat.getText().equals("") &&
+                        !campoApMat.getText().equals("") &&
+                        !campoDomicilio.getText().equals("") &&
+                        !campoPlaca.getText().equals("") &&
+                        !campoSerie.getText().equals("") &&
+                        !campoMarca.getText().equals("") &&
+                        !campoModelo.getText().equals("") &&
+                        !campoTotalPagar.getText().equals("") &&
+                        !campoFechaVencimiento.getText().equals("")){
+      
         Timestamp instant= Timestamp.from(Instant.now());
         int mul = id;
         String nombreMulta = campoNombreMulta.getText();
@@ -459,46 +474,6 @@ public class formatoMulta extends javax.swing.JFrame {
         String limite_pago = campoFechaVencimiento.getText();
         String fechaVenc = campoFechaVencimiento.getText();
 
-        if (nombreMulta == "") {
-            value++;
-        }
-        if (limite_pago == "") {
-            value++;
-        }
-        if (nombres == "") {
-            value++;
-        }
-        if (apPat == "") {
-            value++;
-        }
-        if (apMat == "") {
-            value++;
-        }
-        if (domicilio == "") {
-            value++;
-        }
-        if (placa == "") {
-            value++;
-        }
-        if (serie == "") {
-            value++;
-        }
-        if (marca == "") {
-            value++;
-        }
-        if (modelo == "") {
-            value++;
-        }
-        if (totalPagar == "") {
-            value++;
-        }
-        if (fechaVenc == "") {
-            value++;
-        }
-
-        if (value > 0) {
-            JOptionPane.showMessageDialog(null, "Es necesario llenar todos los datos.");
-        } else {
             tmg.setId(numeroFactura);//Aqui faltaba el numero de factura
             tmg.setFolio(nombreMulta);
             tmg.setCreated_at(instant);
@@ -516,17 +491,65 @@ public class formatoMulta extends javax.swing.JFrame {
             tmg.setId_multa(mul);
 
             cbd.openConnection();
+            
             int operacionExitosa = cbd.formatoMulta(tmg);
             cbd.closeConnection();
             if(operacionExitosa == 1){
                 JOptionPane.showMessageDialog(null, "La factura fue generada exitosamente.");
                 this.dispose();
+                
+                String [] datosDocto = new String[15];
+                datosDocto[0] = String.valueOf(campoUsuarioActual.getText()); //#usuario#
+                datosDocto[1] = String.valueOf(campoFechaActual.getText()); //#fecha#
+                datosDocto[2] = String.valueOf(campoNombreMulta.getText()); //#nombremulta#
+                datosDocto[3] = String.valueOf(campoNombres.getText()); //#nombres#
+                datosDocto[4] = String.valueOf(campoApPat.getText()); //#apellidopat#
+                datosDocto[5] = String.valueOf(campoApMat.getText()); //#apellidomat#
+                datosDocto[6] = String.valueOf(campoDomicilio.getText()); //#domicilio#
+                datosDocto[7] = String.valueOf(campoPlaca.getText()); //#placa#
+                datosDocto[8] = String.valueOf(campoSerie.getText()); //#nserie#
+                datosDocto[9] = String.valueOf(campoMarca.getText()); //#marca#
+                datosDocto[10] = String.valueOf(campoModelo.getText()); //#modelo#
+                datosDocto[11] = String.valueOf(campoConceptoPago.getText()); //#concepto#
+                datosDocto[12] = String.valueOf(campoTotalPagar.getText()); //#pago#
+                datosDocto[13] = String.valueOf(campoFechaVencimiento.getText()); //#fechalimite#
+                datosDocto[14] = String.valueOf(numeroFactura);
+                String [] datosReemplazo = new String[15];
+                datosReemplazo[0] = "#usuario#";
+                datosReemplazo[1] = "#fecha#";
+                datosReemplazo[2] = "#nombremulta#";
+                datosReemplazo[3] = "#nombres#";
+                datosReemplazo[4] = "#apellidopat#";
+                datosReemplazo[5] = "#apellidomat#";
+                datosReemplazo[6] = "#domicilio#";
+                datosReemplazo[7] = "#placa#";
+                datosReemplazo[8] = "#nserie#";
+                datosReemplazo[9] = "#marca#";
+                datosReemplazo[10] = "#modelo#";
+                datosReemplazo[11] = "#concepto#";
+                datosReemplazo[12] = "#pago#";
+                datosReemplazo[13] = "#fechalimite#";
+                datosReemplazo[14] = "#nfactura#";
                 //  Aqui ira el proceso del reporte.
+                System.out.println(Arrays.toString(datosReemplazo));
+                System.out.println(Arrays.toString(datosDocto));
+                ControladorUtilerias cu = new ControladorUtilerias();
+                try {
+                    cu.creaDocContrato(datosReemplazo, datosDocto, 1, String.valueOf(numeroFactura));
+                } catch (InvalidFormatException ex) {
+                    Logger.getLogger(formatoMulta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(formatoMulta.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             else{
                 JOptionPane.showMessageDialog(null, "La factura no fue generada, verifica con el administrador.");
                 this.dispose();
             }
+        
+    }
+    else{
+            JOptionPane.showMessageDialog(null, "Por favor, llena todos los campos para continuar.");
         }
 
     }//GEN-LAST:event_guardarImprimirMouseClicked

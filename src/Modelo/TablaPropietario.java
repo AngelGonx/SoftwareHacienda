@@ -1,9 +1,11 @@
 package Modelo;
 //created on 16-10-2021 at 8:11:22
 //class 'TablaPropietario'
+
+import java.sql.Timestamp;
+
 public class TablaPropietario{
 // variables for TablaPropietario
-
 	private int id;
 	private String nombres;
 	private String apellido_pat;
@@ -12,141 +14,219 @@ public class TablaPropietario{
 	private String edad;
 	private String domicilio;
 	private String lugar;
+        private String marca;
+        private String modelo;
+        private String serie;
+        private String age;
+        private String tenencia;
+        private String placas;
+        private String fecha;
+        private String transmision;
 	private String created_by;
 	private String updated_by;
-	private String created_at;
-	private String updated_at;
-	private int id_vehiculo;
-	private String KEY;
+	private Timestamp created_at;
+	private Timestamp updated_at;
+
+    public TablaPropietario() {
+    }
+
+    public TablaPropietario(int id, String nombres, String apellido_pat, String apellido_mat, String sexo, String edad, String domicilio, String lugar, String marca, String modelo, String serie,String age, String tenencia, String placas, String transmision,String fecha, String created_by, String updated_by, Timestamp created_at, Timestamp updated_at) {
+        this.id = id;
+        this.nombres = nombres;
+        this.apellido_pat = apellido_pat;
+        this.apellido_mat = apellido_mat;
+        this.sexo = sexo;
+        this.edad = edad;
+        this.domicilio = domicilio;
+        this.lugar = lugar;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.serie = serie;
+        this.age = age;
+        this.tenencia = tenencia;
+        this.placas = placas;
+        this.transmision = transmision;
+        this.created_by = created_by;
+        this.updated_by = updated_by;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+        this.fecha = fecha;
+    }
+	
 
 
 // setters and getters for TablaPropietario
 
-// setter method for 'id'
-public void setid(int id){
-    this.id = id;
-}
+    public int getId() {
+        return id;
+    }
 
-// getter method for 'id'
-public int getid(int id){
-    return this.id = id;
-}
-// setter method for 'nombres'
-public void setnombres(String nombres){
-    this.nombres = nombres;
-}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-// getter method for 'nombres'
-public String getnombres(String nombres){
-    return this.nombres = nombres;
-}
-// setter method for 'apellido_pat'
-public void setapellido_pat(String apellido_pat){
-    this.apellido_pat = apellido_pat;
-}
+    public String getNombres() {
+        return nombres;
+    }
 
-// getter method for 'apellido_pat'
-public String getapellido_pat(String apellido_pat){
-    return this.apellido_pat = apellido_pat;
-}
-// setter method for 'apellido_mat'
-public void setapellido_mat(String apellido_mat){
-    this.apellido_mat = apellido_mat;
-}
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
 
-// getter method for 'apellido_mat'
-public String getapellido_mat(String apellido_mat){
-    return this.apellido_mat = apellido_mat;
-}
-// setter method for 'sexo'
-public void setsexo(String sexo){
-    this.sexo = sexo;
-}
+    public String getApellido_pat() {
+        return apellido_pat;
+    }
 
-// getter method for 'sexo'
-public String getsexo(String sexo){
-    return this.sexo = sexo;
-}
-// setter method for 'edad'
-public void setedad(String edad){
-    this.edad = edad;
-}
+    public void setApellido_pat(String apellido_pat) {
+        this.apellido_pat = apellido_pat;
+    }
 
-// getter method for 'edad'
-public String getedad(String edad){
-    return this.edad = edad;
-}
-// setter method for 'domicilio'
-public void setdomicilio(String domicilio){
-    this.domicilio = domicilio;
-}
+    public String getApellido_mat() {
+        return apellido_mat;
+    }
 
-// getter method for 'domicilio'
-public String getdomicilio(String domicilio){
-    return this.domicilio = domicilio;
-}
-// setter method for 'lugar'
-public void setlugar(String lugar){
-    this.lugar = lugar;
-}
+    public void setApellido_mat(String apellido_mat) {
+        this.apellido_mat = apellido_mat;
+    }
 
-// getter method for 'lugar'
-public String getlugar(String lugar){
-    return this.lugar = lugar;
-}
-// setter method for 'created_by'
-public void setcreated_by(String created_by){
-    this.created_by = created_by;
-}
+    public String getSexo() {
+        return sexo;
+    }
 
-// getter method for 'created_by'
-public String getcreated_by(String created_by){
-    return this.created_by = created_by;
-}
-// setter method for 'updated_by'
-public void setupdated_by(String updated_by){
-    this.updated_by = updated_by;
-}
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
 
-// getter method for 'updated_by'
-public String getupdated_by(String updated_by){
-    return this.updated_by = updated_by;
-}
-// setter method for 'created_at'
-public void setcreated_at(String created_at){
-    this.created_at = created_at;
-}
+    public String getEdad() {
+        return edad;
+    }
 
-// getter method for 'created_at'
-public String getcreated_at(String created_at){
-    return this.created_at = created_at;
-}
-// setter method for 'updated_at'
-public void setupdated_at(String updated_at){
-    this.updated_at = updated_at;
-}
+    public void setEdad(String edad) {
+        this.edad = edad;
+    }
 
-// getter method for 'updated_at'
-public String getupdated_at(String updated_at){
-    return this.updated_at = updated_at;
-}
-// setter method for 'id_vehiculo'
-public void setid_vehiculo(int id_vehiculo){
-    this.id_vehiculo = id_vehiculo;
-}
+    public String getDomicilio() {
+        return domicilio;
+    }
 
-// getter method for 'id_vehiculo'
-public int getid_vehiculo(int id_vehiculo){
-    return this.id_vehiculo = id_vehiculo;
-}
-// setter method for 'KEY'
-public void setKEY(String KEY){
-    this.KEY = KEY;
-}
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
 
-// getter method for 'KEY'
-public String getKEY(String KEY){
-    return this.KEY = KEY;
-}
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getTenencia() {
+        return tenencia;
+    }
+
+    public void setTenencia(String tenencia) {
+        this.tenencia = tenencia;
+    }
+
+    public String getPlacas() {
+        return placas;
+    }
+
+    public void setPlacas(String placas) {
+        this.placas = placas;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getTransmision() {
+        return transmision;
+    }
+
+    public void setTransmision(String transmision) {
+        this.transmision = transmision;
+    }
+
+    public String getCreated_by() {
+        return created_by;
+    }
+
+    public void setCreated_by(String created_by) {
+        this.created_by = created_by;
+    }
+
+    public String getUpdated_by() {
+        return updated_by;
+    }
+
+    public void setUpdated_by(String updated_by) {
+        this.updated_by = updated_by;
+    }
+
+    public Timestamp getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
+    }
+
+    public Timestamp getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
+    }
+
+    @Override
+    public String toString() {
+        return "TablaPropietario{" + "id=" + id + ", nombres=" + nombres + ", apellido_pat=" + apellido_pat + ", apellido_mat=" + apellido_mat + ", sexo=" + sexo + ", edad=" + edad + ", domicilio=" + domicilio + ", lugar=" + lugar + ", marca=" + marca + ", modelo=" + modelo + ", serie=" + serie + ", age=" + age + ", tenencia=" + tenencia + ", placas=" + placas + ", fecha=" + fecha + ", transmision=" + transmision + ", created_by=" + created_by + ", updated_by=" + updated_by + ", created_at=" + created_at + ", updated_at=" + updated_at + '}';
+    }
+
+   
+    
+ 
+    
+    
+
 
 }

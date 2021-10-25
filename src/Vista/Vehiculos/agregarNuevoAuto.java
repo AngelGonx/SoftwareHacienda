@@ -5,6 +5,13 @@
  */
 package Vista.Vehiculos;
 
+import Controlador.ControladorBaseDeDatos;
+import Modelo.TablaPropietario;
+import Modelo.TablaUsuario;
+import java.sql.Timestamp;
+import java.time.Instant;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
@@ -14,8 +21,13 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
     /**
      * Creates new form agregarNuevoAuto
      */
-    public agregarNuevoAuto() {
+    TablaPropietario tbp = new TablaPropietario();
+    ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
+    TablaUsuario tbu = new TablaUsuario();
+    public agregarNuevoAuto(TablaUsuario tbu) {
         initComponents();
+        campoUsuarioActual.setText(tbu.getUsername());
+        this.tbu = tbu;
     }
 
     /**
@@ -37,44 +49,42 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
         entrarButton = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        eliminarAuto = new javax.swing.JLabel();
-        entrarButton2 = new javax.swing.JTextField();
+        campoUsuarioActual = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        campoNombres = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        campoApellidoMat = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        campoDomicilio = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        campoApellidoPat = new javax.swing.JTextField();
+        campoLugar = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jSpinner1 = new javax.swing.JSpinner();
+        campoSexo = new javax.swing.JComboBox<>();
+        campoEdad = new javax.swing.JSpinner();
         jLabel15 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        campoMarca = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        campoAge = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        campoPlacas = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
+        campoModelo = new javax.swing.JTextField();
+        campoNoSerie = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
+        campoFecha = new javax.swing.JTextField();
+        campoTransimision = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        campoTenencia = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,8 +145,8 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/iconoPerfilPeque_1.png"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        jLabel3.setText("Usuario");
+        campoUsuarioActual.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        campoUsuarioActual.setText("Usuario");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -146,7 +156,7 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addComponent(campoUsuarioActual, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -154,27 +164,11 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(campoUsuarioActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 270, 50));
-
-        eliminarAuto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                eliminarAutoMouseClicked(evt);
-            }
-        });
-        jPanel1.add(eliminarAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 810, 160, 30));
-
-        entrarButton2.setEditable(false);
-        entrarButton2.setBackground(new java.awt.Color(191, 144, 0));
-        entrarButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        entrarButton2.setForeground(new java.awt.Color(255, 255, 255));
-        entrarButton2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        entrarButton2.setText("Eliminar auto");
-        entrarButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(entrarButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 810, 160, 30));
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
@@ -191,50 +185,50 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
         jPanel3.add(jLabel1);
         jLabel1.setBounds(30, 30, 81, 30);
 
-        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField1.setToolTipText("");
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel3.add(jTextField1);
-        jTextField1.setBounds(31, 52, 220, 30);
+        campoNombres.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoNombres.setToolTipText("");
+        campoNombres.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel3.add(campoNombres);
+        campoNombres.setBounds(31, 52, 220, 30);
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel5.setText("Apellido materno:");
         jPanel3.add(jLabel5);
         jLabel5.setBounds(30, 90, 119, 30);
 
-        jTextField4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField4.setToolTipText("");
-        jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel3.add(jTextField4);
-        jTextField4.setBounds(31, 118, 220, 30);
+        campoApellidoMat.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoApellidoMat.setToolTipText("");
+        campoApellidoMat.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel3.add(campoApellidoMat);
+        campoApellidoMat.setBounds(31, 118, 220, 30);
 
         jLabel6.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel6.setText("Domicilio:");
         jPanel3.add(jLabel6);
         jLabel6.setBounds(30, 160, 64, 30);
 
-        jTextField5.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField5.setToolTipText("");
-        jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel3.add(jTextField5);
-        jTextField5.setBounds(31, 185, 220, 30);
+        campoDomicilio.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoDomicilio.setToolTipText("");
+        campoDomicilio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel3.add(campoDomicilio);
+        campoDomicilio.setBounds(31, 185, 220, 30);
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel7.setText("Apellido paterno:");
         jPanel3.add(jLabel7);
         jLabel7.setBounds(310, 20, 170, 30);
 
-        jTextField6.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField6.setToolTipText("");
-        jTextField6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel3.add(jTextField6);
-        jTextField6.setBounds(308, 53, 220, 30);
+        campoApellidoPat.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoApellidoPat.setToolTipText("");
+        campoApellidoPat.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel3.add(campoApellidoPat);
+        campoApellidoPat.setBounds(308, 53, 220, 30);
 
-        jTextField7.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField7.setToolTipText("");
-        jTextField7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel3.add(jTextField7);
-        jTextField7.setBounds(308, 185, 220, 30);
+        campoLugar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoLugar.setToolTipText("");
+        campoLugar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel3.add(campoLugar);
+        campoLugar.setBounds(308, 185, 220, 30);
 
         jLabel9.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel9.setText("Sexo:");
@@ -251,16 +245,16 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
         jPanel3.add(jLabel11);
         jLabel11.setBounds(467, 94, 39, 30);
 
-        jComboBox1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "Otro" }));
-        jComboBox1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel3.add(jComboBox1);
-        jComboBox1.setBounds(310, 120, 140, 30);
+        campoSexo.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        campoSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "Otro" }));
+        campoSexo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel3.add(campoSexo);
+        campoSexo.setBounds(310, 120, 140, 30);
 
-        jSpinner1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jSpinner1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel3.add(jSpinner1);
-        jSpinner1.setBounds(470, 120, 60, 26);
+        campoEdad.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        campoEdad.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel3.add(campoEdad);
+        campoEdad.setBounds(470, 120, 60, 26);
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 580, 240));
 
@@ -279,50 +273,50 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
         jPanel4.add(jLabel8);
         jLabel8.setBounds(30, 20, 81, 30);
 
-        jTextField8.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField8.setToolTipText("");
-        jTextField8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel4.add(jTextField8);
-        jTextField8.setBounds(31, 52, 220, 30);
+        campoMarca.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoMarca.setToolTipText("");
+        campoMarca.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel4.add(campoMarca);
+        campoMarca.setBounds(31, 52, 220, 30);
 
         jLabel12.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel12.setText("Año:");
         jPanel4.add(jLabel12);
         jLabel12.setBounds(30, 90, 119, 30);
 
-        jTextField9.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField9.setToolTipText("");
-        jTextField9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel4.add(jTextField9);
-        jTextField9.setBounds(31, 118, 220, 30);
+        campoAge.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoAge.setToolTipText("");
+        campoAge.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel4.add(campoAge);
+        campoAge.setBounds(31, 118, 220, 30);
 
         jLabel13.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel13.setText("Placas:");
         jPanel4.add(jLabel13);
         jLabel13.setBounds(30, 160, 64, 30);
 
-        jTextField10.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField10.setToolTipText("");
-        jTextField10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel4.add(jTextField10);
-        jTextField10.setBounds(31, 185, 220, 30);
+        campoPlacas.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoPlacas.setToolTipText("");
+        campoPlacas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel4.add(campoPlacas);
+        campoPlacas.setBounds(31, 185, 220, 30);
 
         jLabel16.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel16.setText("Modelo:");
         jPanel4.add(jLabel16);
         jLabel16.setBounds(310, 20, 52, 30);
 
-        jTextField11.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField11.setToolTipText("");
-        jTextField11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel4.add(jTextField11);
-        jTextField11.setBounds(308, 53, 220, 30);
+        campoModelo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoModelo.setToolTipText("");
+        campoModelo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel4.add(campoModelo);
+        campoModelo.setBounds(308, 53, 220, 30);
 
-        jTextField12.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField12.setToolTipText("");
-        jTextField12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel4.add(jTextField12);
-        jTextField12.setBounds(308, 185, 220, 30);
+        campoNoSerie.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoNoSerie.setToolTipText("");
+        campoNoSerie.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel4.add(campoNoSerie);
+        campoNoSerie.setBounds(308, 185, 220, 30);
 
         jLabel18.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel18.setText("N. serie:");
@@ -334,17 +328,17 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
         jPanel4.add(jLabel20);
         jLabel20.setBounds(30, 220, 46, 30);
 
-        jTextField13.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField13.setToolTipText("");
-        jTextField13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel4.add(jTextField13);
-        jTextField13.setBounds(30, 250, 160, 30);
+        campoFecha.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoFecha.setToolTipText("");
+        campoFecha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel4.add(campoFecha);
+        campoFecha.setBounds(30, 250, 160, 30);
 
-        jTextField14.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField14.setToolTipText("");
-        jTextField14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel4.add(jTextField14);
-        jTextField14.setBounds(310, 250, 220, 30);
+        campoTransimision.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoTransimision.setToolTipText("");
+        campoTransimision.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel4.add(campoTransimision);
+        campoTransimision.setBounds(310, 250, 220, 30);
 
         jLabel21.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel21.setText("Transmisión:");
@@ -360,11 +354,11 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
         jPanel4.add(jLabel23);
         jLabel23.setBounds(310, 90, 65, 30);
 
-        jTextField15.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTextField15.setToolTipText("");
-        jTextField15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel4.add(jTextField15);
-        jTextField15.setBounds(310, 120, 220, 30);
+        campoTenencia.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        campoTenencia.setToolTipText("");
+        campoTenencia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel4.add(campoTenencia);
+        campoTenencia.setBounds(310, 120, 220, 30);
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 580, 300));
 
@@ -385,58 +379,122 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
 
     private void regresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresarMouseClicked
         // TODO add your handling code here:
+        this.dispose();
+        vehiculosTabla vt = new vehiculosTabla(tbu);
+        vt.show();
     }//GEN-LAST:event_regresarMouseClicked
 
     private void agregarNuevoAutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarNuevoAutoMouseClicked
-
+       
+        if(!campoNombres.getText().equals("") &&
+            !campoApellidoPat.getText().equals("") &&
+                !campoApellidoMat.getText().equals("") &&
+                        !campoTenencia.getText().equals("") &&
+                                !campoDomicilio.getText().equals("") &&
+                                    !campoFecha.getText().equals("") &&
+                                        !campoLugar.getText().equals("") &&
+                                            !campoMarca.getText().equals("") &&
+                                                !campoModelo.getText().equals("") &&
+                                                    !campoNoSerie.getText().equals("") &&
+                                                         !campoPlacas.getText().equals("") &&
+                                                            !campoTransimision.getText().equals("")
+                )   {
+            
+            Timestamp instant= Timestamp.from(Instant.now());
+            tbp.setAge(campoAge.getText());
+            tbp.setApellido_mat(campoApellidoMat.getText());
+            tbp.setApellido_pat(campoApellidoPat.getText());
+            tbp.setCreated_by(campoUsuarioActual.getText());
+            tbp.setDomicilio(campoDomicilio.getText());
+            tbp.setEdad(String.valueOf(campoEdad.getValue()));
+            tbp.setLugar(campoLugar.getText());
+            tbp.setMarca(campoMarca.getText());
+            tbp.setModelo(campoModelo.getText());
+            tbp.setNombres(campoNombres.getText());
+            tbp.setPlacas(campoPlacas.getText());
+            tbp.setSexo((String) campoSexo.getSelectedItem());
+            tbp.setTenencia(campoTenencia.getText());
+            tbp.setTransmision(campoTransimision.getText());
+            tbp.setCreated_at(instant);
+            tbp.setUpdated_at(instant);
+            tbp.setFecha(campoFecha.getText());
+            tbp.setSerie(campoNoSerie.getText());
+            cbd.openConnection();
+            int operacionExitosa = cbd.crearVehiculoPropietario(tbp);
+            cbd.closeConnection();
+            if(operacionExitosa ==  1){
+                JOptionPane.showMessageDialog(null, "Los datos fueron llenados correctamente.");
+                this.dispose();
+                vehiculosTabla vt = new vehiculosTabla(tbu);
+                vt.show();
+            }else{
+                JOptionPane.showMessageDialog(null, "Ocurrio un error, consulta con el administrador.");
+                this.dispose();
+                vehiculosTabla vt = new vehiculosTabla(tbu);
+                vt.show();
+            }
+        }else{
+        
+            JOptionPane.showMessageDialog(null, "Es necesario llenar todos los campos para continuar.");
+        }
+        
     }//GEN-LAST:event_agregarNuevoAutoMouseClicked
-
-    private void eliminarAutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarAutoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eliminarAutoMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(agregarNuevoAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(agregarNuevoAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(agregarNuevoAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(agregarNuevoAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new agregarNuevoAuto().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(agregarNuevoAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(agregarNuevoAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(agregarNuevoAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(agregarNuevoAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new agregarNuevoAuto().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel agregarNuevoAuto;
-    private javax.swing.JLabel eliminarAuto;
+    private javax.swing.JTextField campoAge;
+    private javax.swing.JTextField campoApellidoMat;
+    private javax.swing.JTextField campoApellidoPat;
+    private javax.swing.JTextField campoDomicilio;
+    private javax.swing.JSpinner campoEdad;
+    private javax.swing.JTextField campoFecha;
+    private javax.swing.JTextField campoLugar;
+    private javax.swing.JTextField campoMarca;
+    private javax.swing.JTextField campoModelo;
+    private javax.swing.JTextField campoNoSerie;
+    private javax.swing.JTextField campoNombres;
+    private javax.swing.JTextField campoPlacas;
+    private javax.swing.JComboBox<String> campoSexo;
+    private javax.swing.JTextField campoTenencia;
+    private javax.swing.JTextField campoTransimision;
+    private javax.swing.JLabel campoUsuarioActual;
     private javax.swing.JTextField entrarButton;
     private javax.swing.JTextField entrarButton1;
-    private javax.swing.JTextField entrarButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -451,7 +509,6 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -462,22 +519,8 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel regresar;
     // End of variables declaration//GEN-END:variables
 }
