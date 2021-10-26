@@ -562,5 +562,28 @@ public class ControladorBaseDeDatos {
 
         return modeloRetorno;
     }
+    
+    /*Nombre: Clase Consulta obtenerNFacturaLicencia
+    Función:Consulta la tabla propietario y la obtiene la ultima factura
+    Aut@r: José Luis Caamal Ic
+    Parametros: 
+    date: 26/10/2021*/
+    public int obtenerNFacturaLicencia() {
+        int tpAux = 0;
+        String Query = "SELECT max(id) as idmax FROM tabla_licencia_generada";
+        System.out.println(Query);
+        try {
+            Statement st;
+            st = Conexion.createStatement();
+            java.sql.ResultSet resultSet;
+            resultSet = st.executeQuery(Query);
+            while (resultSet.next()) {
+                tpAux = resultSet.getInt("idmax");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tpAux;
+    }
 
 }

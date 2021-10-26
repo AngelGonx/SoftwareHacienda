@@ -6,13 +6,21 @@
 package Vista.Licencias;
 
 import Controlador.ControladorBaseDeDatos;
+import Controlador.ControladorUtilerias;
 import Modelo.TablaLicenciaGenerada;
 import Modelo.TablaTipoLicencia;
 import Modelo.TablaUsuario;
 import Vista.Principal.menuPrincipal2;
+import Vista.multas.formatoMulta;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 /**
  *
@@ -316,9 +324,56 @@ public class agregarLicencia extends javax.swing.JFrame {
             //Se realiza el insert de los campos de las licencias y despues se imprime el documento
             cbd.openConnection();
             int operacionExitosa = cbd.crearLicenciaGenerada(tlg);
+            int numeroFactura = cbd.obtenerNFacturaLicencia();
             cbd.closeConnection();
             if(operacionExitosa == 1){
                 JOptionPane.showMessageDialog(null, "Licencia Guardada Exitosamente.");
+                ControladorUtilerias cu = new ControladorUtilerias();
+                String fechaactual = cu.convertirFechaDict(new Date());
+                String [] datosDocto = new String[15];
+                datosDocto[0] = String.valueOf(campoUsuarioActual.getText()); //#usuario#
+                datosDocto[1] = String.valueOf(fechaactual); //#fecha#
+                datosDocto[2] = String.valueOf(numeroFactura); //#nofactura#
+                datosDocto[3] = String.valueOf(campoConceptoCobro.getText()); //##licencia##
+                datosDocto[4] = String.valueOf(campoNombres.getText()); //#nombres#
+                datosDocto[5] = String.valueOf(campoApellidoPaterno.getText()); //#apellidopat#
+                datosDocto[6] = String.valueOf(campoApellidoMaterno.getText()); //#apellidomat#
+                datosDocto[7] = String.valueOf(campoDomicilio.getText()); //#domicilio#
+                datosDocto[8] = String.valueOf(campoEdad.getValue()); //#edad#
+                datosDocto[9] = String.valueOf(campoFechaNacimiento.getText()); //#fechanac#
+                datosDocto[10] = String.valueOf(campoCP.getText()); //#cp#
+                datosDocto[11] = String.valueOf(campoLugar.getText()); //#lugar#
+                datosDocto[12] = String.valueOf(campoCelular.getText()); //#celular#
+                datosDocto[13] = String.valueOf(campoConceptoCobro.getText()); //#concepto#
+                datosDocto[14] = String.valueOf(campoCosto.getText()); //#total#
+                String [] datosReemplazo = new String[15];
+                datosReemplazo[0] = "#usuario#";
+                datosReemplazo[1] = "#fecha#";
+                datosReemplazo[2] = "#nofactura#";
+                datosReemplazo[3] = "#licencia#";
+                datosReemplazo[4] = "#nombres#";
+                datosReemplazo[5] = "#apellidopat#";
+                datosReemplazo[6] = "#apellidomat#";
+                datosReemplazo[7] = "#domicilio#";
+                datosReemplazo[8] = "#edad#";
+                datosReemplazo[9] = "#fechanac#";
+                datosReemplazo[10] = "#codigo#";
+                datosReemplazo[11] = "#lugar#";
+                datosReemplazo[12] = "#celular#";
+                datosReemplazo[13] = "#concepto#";
+                datosReemplazo[14]= "#total#";
+                //  Aqui ira el proceso del reporte.
+                System.out.println(Arrays.toString(datosReemplazo));
+                System.out.println(Arrays.toString(datosDocto));
+                
+                try {
+                    cu.creaDocContrato(datosReemplazo, datosDocto, 2, String.valueOf(numeroFactura));
+                } catch (IOException ex) {
+                    Logger.getLogger(formatoMulta.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InvalidFormatException ex) {
+                    Logger.getLogger(agregarLicencia.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                 this.dispose();
                 menuPrincipal2 mp2 = new menuPrincipal2(tbu);
                 mp2.show();

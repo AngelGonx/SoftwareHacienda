@@ -214,9 +214,9 @@ public class ControladorUtilerias {
                 if (runs != null) {
                     for (XWPFRun r : runs) {
                         String text = r.getText(0);
-                        System.out.println(text);
-                        System.out.println(datosPalabra[i]);
-                        System.out.println(datosReemplazo[i]);
+//                        System.out.println(text);
+//                        System.out.println(datosPalabra[i]);
+//                        System.out.println(datosReemplazo[i]);
                         if (text != null && text.contains(datosPalabra[i])) {
                             text = text.replace(datosPalabra[i], (String) datosReemplazo[i]);
                             r.setText(text, 0);
