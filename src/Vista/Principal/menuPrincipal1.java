@@ -7,6 +7,7 @@ package Vista.Principal;
 
 import Vista.Vehiculos.vehiculosTabla;
 import Vista.multas.multasTabla;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -19,6 +20,7 @@ public class menuPrincipal1 extends javax.swing.JFrame {
      */
     public menuPrincipal1() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Multimedia/logoHacienda.png")).getImage());
     }
 
     /**

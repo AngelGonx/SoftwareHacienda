@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -42,10 +43,12 @@ public class formatoMulta extends javax.swing.JFrame {
 
     public formatoMulta() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Multimedia/logoHacienda.png")).getImage());
     }
 
     public formatoMulta(TablaUsuario tbu, TablaMultas tm) {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Multimedia/logoHacienda.png")).getImage());
         Date dt = new Date();
         String fecha = cu.convertirFechaDict(dt);
         Calendar c = Calendar.getInstance();

@@ -5,6 +5,8 @@
  */
 package Vista.Vehiculos;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Usuario
@@ -16,6 +18,7 @@ public class eliminarAuto extends javax.swing.JFrame {
      */
     public eliminarAuto() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Multimedia/logoHacienda.png")).getImage());
     }
 
     /**

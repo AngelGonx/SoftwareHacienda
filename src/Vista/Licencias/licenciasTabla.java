@@ -8,6 +8,7 @@ package Vista.Licencias;
 import Vista.multas.*;
 import Vista.Principal.menuPrincipal2;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -20,6 +21,7 @@ public class licenciasTabla extends javax.swing.JFrame {
      */
     public licenciasTabla() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Multimedia/logoHacienda.png")).getImage());
         
     }
 

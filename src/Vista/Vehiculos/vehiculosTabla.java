@@ -8,6 +8,7 @@ package Vista.Vehiculos;
 import Controlador.ControladorBaseDeDatos;
 import Modelo.TablaUsuario;
 import Vista.Principal.menuPrincipal2;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -24,23 +25,26 @@ public class vehiculosTabla extends javax.swing.JFrame {
      */
     public vehiculosTabla() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Multimedia/logoHacienda.png")).getImage());
     }
     TablaUsuario tu = new TablaUsuario();
     DefaultTableModel modeloVehiculoPropietario;
     Controlador.ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
-    String[] columna = new String[] {"id","nombres","apellido_pat","apellido_mat","marca","modelo","placas","created_by","created_at"}; //La columna nos sirve de ancla para cargar el modelo y pintarlo en la tabla
+    String[] columna = new String[]{"id", "marca", "modelo",
+        "ano", "tenencia", "placas", "transmision", "created_at", "updated_at"}; //La columna nos sirve de ancla para cargar el modelo y pintarlo en la tabla
+
     public vehiculosTabla(TablaUsuario tu) {
-        
-        
+
         cbd.openConnection();
         modeloVehiculoPropietario = cbd.modeloVehiculoPropietario(columna);
         cbd.closeConnection();
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Multimedia/logoHacienda.png")).getImage());
         campoUsuarioActual.setText(tu.getUsername());
         this.tu = tu;
-        
+
         tablaVehiculoPropietario.setModel(modeloVehiculoPropietario);
-        
+
         tablaVehiculoPropietario.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -62,18 +66,18 @@ public class vehiculosTabla extends javax.swing.JFrame {
 //                }
             }
         });
-        
+
         ((DefaultTableCellRenderer) tablaVehiculoPropietario.getTableHeader().getDefaultRenderer())
-                       .setHorizontalAlignment(SwingConstants.CENTER);
+                .setHorizontalAlignment(SwingConstants.CENTER);
     }
-    
-    public void refrescarTabla() {                                            
+
+    public void refrescarTabla() {
         cbd.openConnection();
         modeloVehiculoPropietario = cbd.modeloVehiculoPropietario(columna);
         cbd.closeConnection();
         tablaVehiculoPropietario.setModel(modeloVehiculoPropietario);
         modeloVehiculoPropietario.fireTableDataChanged();
-    } 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -266,54 +270,52 @@ public class vehiculosTabla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_EliminarMouseClicked
-         if(!campovalorID.getText().equals("")){
+        if (!campovalorID.getText().equals("")) {
             int dialogButton = JOptionPane.YES_NO_OPTION;
 //            JOptionPane.showMessageDialog(null,"El archivo se creo con éxito en la siguiente dirección: "+direccion+nombreNuevo);
-            int dialogResult = JOptionPane.showConfirmDialog (null, "¿Esta seguro que desea eliminar la fila "+campovalorID.getText()+"?","Warning",dialogButton);
-            if(dialogResult == JOptionPane.YES_OPTION){
-              // Saving code here
-              //nameArchive archivoGenerado sin permiso :v
-                    cbd.openConnection();
-                    int operacionExitosa = cbd.eliminarFila(campovalorID.getText());
-                    cbd.closeConnection();
-                     if(operacionExitosa ==  1){
-                        JOptionPane.showMessageDialog(null, "Los datos fueron eliminados correctamente.");
+            int dialogResult = JOptionPane.showConfirmDialog(null, "¿Esta seguro que desea eliminar la fila " + campovalorID.getText() + "?", "Warning", dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                // Saving code here
+                //nameArchive archivoGenerado sin permiso :v
+                cbd.openConnection();
+                int operacionExitosa = cbd.eliminarFila(campovalorID.getText());
+                cbd.closeConnection();
+                if (operacionExitosa == 1) {
+                    JOptionPane.showMessageDialog(null, "Los datos fueron eliminados correctamente.");
 //                        this.dispose();
 ////                        vehiculosTabla vt = new vehiculosTabla(tu);
 ////                        vt.show();
-                            refrescarTabla();
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Ocurrio un error, consulta con el administrador.");
+                    refrescarTabla();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error, consulta con el administrador.");
 //                        this.dispose();
 //                        vehiculosTabla vt = new vehiculosTabla(tu);
 //                        vt.show();
-                            refrescarTabla();
-                    }
-            }else{
-                   JOptionPane.showMessageDialog(null, "Asegurate de estar seguro al eliminar un registro.");
+                    refrescarTabla();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Asegurate de estar seguro al eliminar un registro.");
             }
-             
-        }
-        else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Por favor, selecciona un ID para continuar con la eliminaci'on");
-        }    
+        }
     }//GEN-LAST:event_btn_EliminarMouseClicked
 
     private void editar_bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editar_bMouseClicked
         // TODO add your handling code here:
-         if(!campovalorID.getText().equals("")){
-             editarVehiculo ev = new editarVehiculo(tu, Integer.valueOf(campovalorID.getText()));
-             ev.show();
-             this.dispose();
-        }
-        else{
+        if (!campovalorID.getText().equals("")) {
+            editarVehiculo ev = new editarVehiculo(tu, Integer.valueOf(campovalorID.getText()));
+            ev.show();
+            this.dispose();
+        } else {
             JOptionPane.showMessageDialog(null, "Por favor, selecciona un ID para continuar con la actualizaci'on");
         }
     }//GEN-LAST:event_editar_bMouseClicked
 
     private void agregarVehiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarVehiculoMouseClicked
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_agregarVehiculoMouseClicked
 
     private void regresar_b1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresar_b1MouseClicked
@@ -333,46 +335,46 @@ public class vehiculosTabla extends javax.swing.JFrame {
     private void campoBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoBuscarKeyTyped
         // TODO add your handling code here:
         cbd.openConnection();
-        modeloVehiculoPropietario = cbd.modeloVehiculoPropietarioBusqueda(columna,campoBuscar.getText());
+        modeloVehiculoPropietario = cbd.modeloVehiculoPropietarioBusqueda(columna, campoBuscar.getText());
         cbd.closeConnection();
         tablaVehiculoPropietario.setModel(modeloVehiculoPropietario);
         modeloVehiculoPropietario.fireTableDataChanged();
     }//GEN-LAST:event_campoBuscarKeyTyped
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(vehiculosTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(vehiculosTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(vehiculosTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(vehiculosTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new vehiculosTabla().setVisible(true);
-//            }
-//        });
-//    }
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(vehiculosTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(vehiculosTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(vehiculosTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(vehiculosTabla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new vehiculosTabla().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel agregarVehiculo;

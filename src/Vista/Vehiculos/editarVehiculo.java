@@ -10,6 +10,7 @@ import Modelo.TablaPropietario;
 import Modelo.TablaUsuario;
 import java.sql.Timestamp;
 import java.time.Instant;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +28,7 @@ public class editarVehiculo extends javax.swing.JFrame {
     int idUpdate = 0;
     public editarVehiculo(TablaUsuario tbu, int id) {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Multimedia/logoHacienda.png")).getImage());
         campoUsuarioActual.setText(tbu.getUsername());
         this.tbu = tbu;
         idUpdate = id;

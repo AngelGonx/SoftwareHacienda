@@ -10,6 +10,7 @@ import Modelo.TablaPropietario;
 import Modelo.TablaUsuario;
 import java.sql.Timestamp;
 import java.time.Instant;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +27,7 @@ public class agregarNuevoAuto extends javax.swing.JFrame {
     TablaUsuario tbu = new TablaUsuario();
     public agregarNuevoAuto(TablaUsuario tbu) {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Multimedia/logoHacienda.png")).getImage());
         campoUsuarioActual.setText(tbu.getUsername());
         this.tbu = tbu;
     }

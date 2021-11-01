@@ -10,6 +10,7 @@ import Modelo.TablaUsuario;
 import java.awt.event.KeyEvent;
 import java.sql.Timestamp;
 import java.time.Instant;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +26,7 @@ public class crearUsuario extends javax.swing.JFrame {
     ControladorBaseDeDatos cut = new ControladorBaseDeDatos();
     public crearUsuario() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Multimedia/logoHacienda.png")).getImage());
     }
 
     /**

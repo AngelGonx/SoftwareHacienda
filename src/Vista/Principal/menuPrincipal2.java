@@ -10,6 +10,7 @@ import Vista.Licencias.licenciasLista;
 import Vista.Placas.verificarPlacas;
 import Vista.Vehiculos.vehiculosTabla;
 import Vista.multas.multasTabla;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -22,11 +23,13 @@ public class menuPrincipal2 extends javax.swing.JFrame {
      */
     public menuPrincipal2() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Multimedia/logoHacienda.png")).getImage());
     }
     public TablaUsuario tbu = new TablaUsuario();
     //Creo un constructor para realizar la informaci'on del usuario actual
     public menuPrincipal2(TablaUsuario tbu) {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Multimedia/logoHacienda.png")).getImage());
         this.tbu = tbu;
         System.out.println(tbu.toString());
         campoUsuarioActual.setText(tbu.getUsername());
@@ -186,7 +189,7 @@ public class menuPrincipal2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-        verificarPlacas vP = new verificarPlacas();
+        verificarPlacas vP = new verificarPlacas(tbu);
         vP.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jToggleButton3ActionPerformed

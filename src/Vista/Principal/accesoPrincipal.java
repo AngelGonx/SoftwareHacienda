@@ -13,6 +13,7 @@ import java.awt.font.TextAttribute;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.Action;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /*
@@ -23,6 +24,7 @@ public class accesoPrincipal extends javax.swing.JFrame {
     ControladorBaseDeDatos cut = new ControladorBaseDeDatos();
     public accesoPrincipal() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Multimedia/logoHacienda.png")).getImage());
         this.setLocationRelativeTo(null);
     }
 
