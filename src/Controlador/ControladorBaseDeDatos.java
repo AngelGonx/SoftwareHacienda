@@ -394,7 +394,7 @@ public class ControladorBaseDeDatos {
         DefaultTableModel modeloRetorno;
         modeloRetorno = new DefaultTableModel(null, columna);
         try {
-            String Query = "SELECT * FROM tabla_vehiculo";
+            String Query = "SELECT id,nombres,apellido_pat,apellido_mat,marca,modelo,placas,created_by,created_at FROM tabla_propietario";
             System.out.println("Contenido en ejecución: " + Query);
 
             PreparedStatement us = Conexion.prepareStatement(Query);

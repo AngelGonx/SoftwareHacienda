@@ -402,6 +402,9 @@ public class editarVehiculo extends javax.swing.JFrame {
 
     private void regresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresarMouseClicked
         // TODO add your handling code here:
+        vehiculosTabla vt = new vehiculosTabla(tbu);
+        vt.show();
+        this.dispose();
     }//GEN-LAST:event_regresarMouseClicked
 
     private void editarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarMouseClicked

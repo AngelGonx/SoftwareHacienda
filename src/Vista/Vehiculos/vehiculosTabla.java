@@ -30,9 +30,10 @@ public class vehiculosTabla extends javax.swing.JFrame {
     TablaUsuario tu = new TablaUsuario();
     DefaultTableModel modeloVehiculoPropietario;
     Controlador.ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
-    String[] columna = new String[]{"id", "marca", "modelo",
-        "ano", "tenencia", "placas", "transmision", "created_at", "updated_at"}; //La columna nos sirve de ancla para cargar el modelo y pintarlo en la tabla
-
+   // String[] columna = new String[]{"id", "marca", "modelo",
+   //     "ano", "tenencia", "placas", "transmision", "created_at", "updated_at"}; //La columna nos sirve de ancla para cargar el modelo y pintarlo en la tabla
+    String[] columna = new String[] {"id","nombres","apellido_pat","apellido_mat","marca","modelo","placas","created_by","created_at"}; //La columna nos sirve de ancla para cargar el modelo y pintarlo en la tabla
+    
     public vehiculosTabla(TablaUsuario tu) {
 
         cbd.openConnection();
