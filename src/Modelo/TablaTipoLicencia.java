@@ -9,6 +9,7 @@ public class TablaTipoLicencia{
 
 	private int id;
 	private String concepto_cobro;
+        private String tipo_licencia;
 	private String costo;
 	private String created_by;
 	private Timestamp created_at;
@@ -76,6 +77,15 @@ public class TablaTipoLicencia{
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
+    
+
+    public String getTipo_licencia() {
+        return tipo_licencia;
+    }
+
+    public void setTipo_licencia(String tipo_licencia) {
+        this.tipo_licencia = tipo_licencia;
+    }    
 
     @Override
     public String toString() {

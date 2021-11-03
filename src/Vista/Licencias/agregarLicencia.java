@@ -48,7 +48,7 @@ public class agregarLicencia extends javax.swing.JFrame {
         campoUsuarioActual.setText(tbu.getUsername());
         campoCosto.setText(ttl.getCosto());
         campoConceptoCobro.setText(ttl.getConcepto_cobro());
-        campoTipoLicencia.setText(ttl.getConcepto_cobro());
+        campoTipoLicencia.setText(ttl.getTipo_licencia());
     }
 
     /**
@@ -98,6 +98,8 @@ public class agregarLicencia extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        regresar_b = new javax.swing.JLabel();
+        entrarButton1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,7 +116,7 @@ public class agregarLicencia extends javax.swing.JFrame {
 
         jTextField3.setEditable(false);
         jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 880, 750, 40));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 820, 750, 40));
 
         jPanel2.setBackground(new java.awt.Color(255, 225, 76));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 3, 0, 0, new java.awt.Color(0, 0, 0)));
@@ -159,7 +161,7 @@ public class agregarLicencia extends javax.swing.JFrame {
                 guardarImprimirMouseClicked(evt);
             }
         });
-        jPanel1.add(guardarImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 810, 160, 30));
+        jPanel1.add(guardarImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 160, 30));
 
         entrarButton.setEditable(false);
         entrarButton.setBackground(new java.awt.Color(191, 144, 0));
@@ -168,7 +170,7 @@ public class agregarLicencia extends javax.swing.JFrame {
         entrarButton.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         entrarButton.setText("Guardar e imprimir");
         entrarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 810, 160, 30));
+        jPanel1.add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 160, 30));
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(191, 144, 0));
@@ -255,7 +257,7 @@ public class agregarLicencia extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel14.setText("   Concepto de cobro");
         jLabel14.setOpaque(true);
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 490, 150, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 150, -1));
 
         campoConceptoCobro.setColumns(20);
         campoConceptoCobro.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -271,7 +273,7 @@ public class agregarLicencia extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel16.setText("L.C CRISTIAN MARTÍNEZ GONZÁLEZ");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 740, -1, 30));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 700, -1, 30));
 
         jLabel17.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel17.setText("Costo:");
@@ -279,17 +281,33 @@ public class agregarLicencia extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel18.setText("Jefe general de hacienda");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 770, -1, 30));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 730, -1, 30));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 770, 340, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 730, 340, 20));
 
         jLabel19.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel19.setText("Oficinas de hacienda del estado en Juchique");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 710, -1, 30));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 670, -1, 30));
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/calendario.png"))); // NOI18N
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, -1, -1));
+
+        regresar_b.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                regresar_bMouseClicked(evt);
+            }
+        });
+        jPanel1.add(regresar_b, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 110, 30));
+
+        entrarButton1.setEditable(false);
+        entrarButton1.setBackground(new java.awt.Color(191, 144, 0));
+        entrarButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        entrarButton1.setForeground(new java.awt.Color(255, 255, 255));
+        entrarButton1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        entrarButton1.setText("Regresar");
+        entrarButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(entrarButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 110, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -299,10 +317,13 @@ public class agregarLicencia extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarImprimirMouseClicked
@@ -324,6 +345,7 @@ public class agregarLicencia extends javax.swing.JFrame {
             tlg.setCreated_at(instant);
             tlg.setUpdated_at(instant);
             tlg.setLugar(campoLugar.getText());
+            tlg.setConcepto(campoConceptoCobro.getText());
             //Se realiza el insert de los campos de las licencias y despues se imprime el documento
             cbd.openConnection();
             int operacionExitosa = cbd.crearLicenciaGenerada(tlg);
@@ -337,7 +359,7 @@ public class agregarLicencia extends javax.swing.JFrame {
                 datosDocto[0] = String.valueOf(campoUsuarioActual.getText()); //#usuario#
                 datosDocto[1] = String.valueOf(fechaactual); //#fecha#
                 datosDocto[2] = String.valueOf(numeroFactura); //#nofactura#
-                datosDocto[3] = String.valueOf(campoConceptoCobro.getText()); //##licencia##
+                datosDocto[3] = String.valueOf(campoTipoLicencia.getText()); //##licencia##
                 datosDocto[4] = String.valueOf(campoNombres.getText()); //#nombres#
                 datosDocto[5] = String.valueOf(campoApellidoPaterno.getText()); //#apellidopat#
                 datosDocto[6] = String.valueOf(campoApellidoMaterno.getText()); //#apellidomat#
@@ -347,7 +369,7 @@ public class agregarLicencia extends javax.swing.JFrame {
                 datosDocto[10] = String.valueOf(campoCP.getText()); //#cp#
                 datosDocto[11] = String.valueOf(campoLugar.getText()); //#lugar#
                 datosDocto[12] = String.valueOf(campoCelular.getText()); //#celular#
-                datosDocto[13] = String.valueOf(campoConceptoCobro.getText()); //#concepto#
+                datosDocto[13] = String.valueOf(tlg.getConcepto()); //#concepto#
                 datosDocto[14] = String.valueOf(campoCosto.getText()); //#total#
                 String [] datosReemplazo = new String[15];
                 datosReemplazo[0] = "#usuario#";
@@ -391,40 +413,48 @@ public class agregarLicencia extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_guardarImprimirMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void regresar_bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresar_bMouseClicked
+        System.out.println(tbu.toString());
+        tbu.setUsername(campoUsuarioActual.getText());
+        licenciasLista lL = new licenciasLista(tbu);
+        lL.show();
+        this.dispose();
+    }//GEN-LAST:event_regresar_bMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new agregarLicencia().setVisible(true);
-            }
-        });
-    }
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(agregarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new agregarLicencia().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField campoApellidoMaterno;
@@ -441,6 +471,7 @@ public class agregarLicencia extends javax.swing.JFrame {
     private javax.swing.JLabel campoTipoLicencia;
     private javax.swing.JLabel campoUsuarioActual;
     private javax.swing.JTextField entrarButton;
+    private javax.swing.JTextField entrarButton1;
     private javax.swing.JLabel guardarImprimir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -465,5 +496,6 @@ public class agregarLicencia extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel regresar_b;
     // End of variables declaration//GEN-END:variables
 }

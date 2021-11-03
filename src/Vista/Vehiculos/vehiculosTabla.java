@@ -134,7 +134,7 @@ public class vehiculosTabla extends javax.swing.JFrame {
                 campoBuscarKeyTyped(evt);
             }
         });
-        jPanel1.add(campoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 60, 320, 30));
+        jPanel1.add(campoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 60, 320, 30));
 
         jTextField3.setEditable(false);
         jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
@@ -252,8 +252,9 @@ public class vehiculosTabla extends javax.swing.JFrame {
         campovalorID.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(campovalorID, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText(" Buscar:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 70, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 60, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

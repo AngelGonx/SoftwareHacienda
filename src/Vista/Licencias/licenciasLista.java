@@ -186,29 +186,35 @@ public class licenciasLista extends javax.swing.JFrame {
     private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
         String conceptoPago = "";
         String precioLicencia = "";
+        String tipoLicencia = "";
         if(btnTipoA.isSelected()){
-            conceptoPago = "Licencia de Tipo A";
+            conceptoPago = "Comprobante de pago para adquirir la licencia vehicular de tipo A en el estado de Veracruz.";
             precioLicencia = "$1,858.00";
+            tipoLicencia = "Nueva licencia tipo A";
             idTipoLicencia = 1;
         }
         if(btnTipoB.isSelected()){
-            conceptoPago = "Licencia de Tipo B";
+            conceptoPago = "Comprobante de pago para adquirir la licencia vehicular de tipo B en el estado de Veracruz.";
             precioLicencia = "$1,748.00";
+            tipoLicencia = "Nueva licencia tipo B";
             idTipoLicencia = 2;
         }
         if(btnTipoC.isSelected()){
-            conceptoPago = "Licencia de Tipo C";
+            conceptoPago = "Comprobante de pago para adquirir la licencia vehicular de tipo C en el estado de Veracruz.";
             precioLicencia = "$1,530.00";
+            tipoLicencia = "Nueva licencia tipo C";
             idTipoLicencia = 3;
         }
         if(btnTipoD.isSelected()){
-            conceptoPago = "Licencia de Tipo D";
+            conceptoPago = "Comprobante de pago para adquirir la licencia vehicular de tipo D en el estado de Veracruz.";
             precioLicencia = "$1,093.00";
+            tipoLicencia = "Nueva licencia tipo D";
             idTipoLicencia = 4;
         }
         Timestamp instant= Timestamp.from(Instant.now());  //Toma la información de hoy
         ttl.setId(idTipoLicencia);
         ttl.setConcepto_cobro(conceptoPago);
+        ttl.setTipo_licencia(tipoLicencia);
         ttl.setCosto(precioLicencia);
         ttl.setCreated_by(tbu.getUsername());
         ttl.setCreated_at(instant);

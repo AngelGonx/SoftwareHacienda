@@ -18,6 +18,7 @@ public class TablaLicenciaGenerada{
 	private String lugar;
 	private String celular;
 	private String crated_by;
+        private String concepto;
 	private Timestamp created_at;
 	private Timestamp updated_at;
 	private int id_tipo_licencia;
@@ -161,6 +162,14 @@ public class TablaLicenciaGenerada{
     public void setId_tipo_licencia(int id_tipo_licencia) {
         this.id_tipo_licencia = id_tipo_licencia;
     }
+
+    public String getConcepto() {
+        return concepto;
+    }
+
+    public void setConcepto(String concepto) {
+        this.concepto = concepto;
+    }    
 
     @Override
     public String toString() {

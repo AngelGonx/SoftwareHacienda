@@ -196,7 +196,7 @@ public class formatoMulta extends javax.swing.JFrame {
                 regresar_bMouseClicked(evt);
             }
         });
-        jPanel1.add(regresar_b, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 840, 110, 30));
+        jPanel1.add(regresar_b, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 840, 110, 30));
 
         entrarButton.setEditable(false);
         entrarButton.setBackground(new java.awt.Color(191, 144, 0));
@@ -205,7 +205,7 @@ public class formatoMulta extends javax.swing.JFrame {
         entrarButton.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         entrarButton.setText("Regresar");
         entrarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 840, 110, 30));
+        jPanel1.add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 840, 110, 30));
 
         guardarImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -447,7 +447,11 @@ public class formatoMulta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void regresar_bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresar_bMouseClicked
-
+        System.out.println(tbu.toString());
+        tbu.setUsername(campoUsuarioActual.getText());
+        multasTabla mT = new multasTabla(tbu);
+        mT.show();
+        this.dispose();        
     }//GEN-LAST:event_regresar_bMouseClicked
 
     private void guardarImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarImprimirMouseClicked
