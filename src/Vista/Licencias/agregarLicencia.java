@@ -98,6 +98,8 @@ public class agregarLicencia extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        regresar_b = new javax.swing.JLabel();
+        entrarButton1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -159,7 +161,7 @@ public class agregarLicencia extends javax.swing.JFrame {
                 guardarImprimirMouseClicked(evt);
             }
         });
-        jPanel1.add(guardarImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 810, 160, 30));
+        jPanel1.add(guardarImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 810, 160, 30));
 
         entrarButton.setEditable(false);
         entrarButton.setBackground(new java.awt.Color(191, 144, 0));
@@ -168,7 +170,7 @@ public class agregarLicencia extends javax.swing.JFrame {
         entrarButton.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         entrarButton.setText("Guardar e imprimir");
         entrarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 810, 160, 30));
+        jPanel1.add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 810, 160, 30));
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(191, 144, 0));
@@ -291,6 +293,22 @@ public class agregarLicencia extends javax.swing.JFrame {
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/calendario.png"))); // NOI18N
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, -1, -1));
 
+        regresar_b.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                regresar_bMouseClicked(evt);
+            }
+        });
+        jPanel1.add(regresar_b, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 810, 110, 30));
+
+        entrarButton1.setEditable(false);
+        entrarButton1.setBackground(new java.awt.Color(191, 144, 0));
+        entrarButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        entrarButton1.setForeground(new java.awt.Color(255, 255, 255));
+        entrarButton1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        entrarButton1.setText("Regresar");
+        entrarButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(entrarButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 810, 110, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -391,6 +409,12 @@ public class agregarLicencia extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_guardarImprimirMouseClicked
 
+    private void regresar_bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresar_bMouseClicked
+        menuPrincipal2 mp = new menuPrincipal2(tbu);
+        mp.show();
+        this.dispose();
+    }//GEN-LAST:event_regresar_bMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -441,6 +465,7 @@ public class agregarLicencia extends javax.swing.JFrame {
     private javax.swing.JLabel campoTipoLicencia;
     private javax.swing.JLabel campoUsuarioActual;
     private javax.swing.JTextField entrarButton;
+    private javax.swing.JTextField entrarButton1;
     private javax.swing.JLabel guardarImprimir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -465,5 +490,6 @@ public class agregarLicencia extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel regresar_b;
     // End of variables declaration//GEN-END:variables
 }
