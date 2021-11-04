@@ -34,8 +34,8 @@ public class verificarPlacas extends javax.swing.JFrame {
     DefaultTableModel modeloPropietario;
     Controlador.ControladorBaseDeDatos cbd = new ControladorBaseDeDatos(); 
     String[] columna = new String[]{"id", "nombres",
-        "apellido_pat", "apellido_mat", "sexo", "edad", "domicilio","lugar", "created_by",
-        "updated_by", "created_at", "updated_at", "id_vehiculo"};
+        "apellido_pat", "apellido_mat", "sexo", "edad", "domicilio","lugar", "marca",
+        "modelo", "serie", "ano", "tenencia","placas"};
 
     
     public verificarPlacas(TablaUsuario tbu) {
@@ -79,7 +79,8 @@ public class verificarPlacas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         regresar_b = new javax.swing.JLabel();
         entrarButton = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        campoBuscarPlacas = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hacienda Juchique");
@@ -134,17 +135,6 @@ public class verificarPlacas extends javax.swing.JFrame {
         jLabel1.setText("Propietario");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, 30));
 
-        tablaPropietario.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane1.setViewportView(tablaPropietario);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 1090, 190));
@@ -170,10 +160,17 @@ public class verificarPlacas extends javax.swing.JFrame {
         entrarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 4, 4, new java.awt.Color(0, 0, 0)));
         jPanel1.add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 400, 110, 30));
 
-        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jTextField1.setText(" Buscar:");
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 50, 270, 30));
+        campoBuscarPlacas.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        campoBuscarPlacas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        campoBuscarPlacas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoBuscarPlacasKeyTyped(evt);
+            }
+        });
+        jPanel1.add(campoBuscarPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 50, 270, 30));
+
+        jLabel3.setText("Buscar:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 60, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,6 +192,15 @@ public class verificarPlacas extends javax.swing.JFrame {
         mP2.show();
         this.dispose();        
     }//GEN-LAST:event_regresar_bMouseClicked
+
+    private void campoBuscarPlacasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoBuscarPlacasKeyTyped
+        // TODO add your handling code here:
+        cbd.openConnection();
+        modeloPropietario = cbd.modeloPropietario(columna, campoBuscarPlacas.getText());
+        cbd.closeConnection();
+        tablaPropietario.setModel(modeloPropietario);
+        modeloPropietario.fireTableDataChanged();
+    }//GEN-LAST:event_campoBuscarPlacasKeyTyped
 
     /**
      * @param args the command line arguments
@@ -232,15 +238,16 @@ public class verificarPlacas extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField campoBuscarPlacas;
     private javax.swing.JLabel campoUsuarioActual;
     private javax.swing.JTextField entrarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel regresar_b;

@@ -585,13 +585,50 @@ public class ControladorBaseDeDatos {
         }
         return tpAux;
     }
-
+    
+    /*Nombre: Clase modeloVehiculoPropietario
+    Función: Obtiene el modelo de los vehiculos y propietarios y las pinta en la tabla
+    Aut@r: Angel 
+    Parametros: */
     public DefaultTableModel modeloPropietario(String columna[]) {
         DefaultTableModel modeloRetorno;
         modeloRetorno = new DefaultTableModel(null, columna);
         try {
             String Query = "SELECT * FROM hacienda.tabla_propietario";
 
+            System.out.println("Contenido en ejecución: " + Query);
+
+            PreparedStatement us = Conexion.prepareStatement(Query);
+            ResultSet res = us.executeQuery();
+            Object objDatos[] = new Object[columna.length]; //Siempre debe cconexoincidir con el numero de columnas!
+
+            while (res.next()) {
+                for (int i = 0; i < columna.length; i++) {
+                    objDatos[i] = res.getObject(i + 1);
+                    //System.out.println(objDatos[i]);
+                }
+                modeloRetorno.addRow(objDatos);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.toString());
+        }
+
+        return modeloRetorno;
+    }
+    
+    /*Nombre: Clase modeloVehiculoPropietario
+    Función: Obtiene el modelo de los vehiculos y propietarios y las pinta en la tabla
+    Aut@r: José Luis Caamal Ic
+    Parametros: */
+
+    public DefaultTableModel modeloPropietario(String columna[], String campoBusqueda) {
+        DefaultTableModel modeloRetorno;
+        modeloRetorno = new DefaultTableModel(null, columna);
+        try {
+            String Query = "SELECT * FROM tabla_propietario "
+                    + "where nombres like '%" +campoBusqueda+"%' or id like '%" +campoBusqueda+"%' or placas like '%" +campoBusqueda+"%' or marca like '%" +campoBusqueda+"%' "
+                    + "or modelo like '%" +campoBusqueda+"%' or apellido_pat like '%" +campoBusqueda+"%'  or apellido_mat like '%" +campoBusqueda+"%'";
             System.out.println("Contenido en ejecución: " + Query);
 
             PreparedStatement us = Conexion.prepareStatement(Query);

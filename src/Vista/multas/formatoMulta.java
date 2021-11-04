@@ -48,6 +48,7 @@ public class formatoMulta extends javax.swing.JFrame {
 
     public formatoMulta(TablaUsuario tbu, TablaMultas tm) {
         initComponents();
+        this.tbu = tbu; //Se anade la info para el retorno
         setIconImage(new ImageIcon(getClass().getResource("/Multimedia/logoHacienda.png")).getImage());
         Date dt = new Date();
         String fecha = cu.convertirFechaDict(dt);
@@ -447,7 +448,9 @@ public class formatoMulta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void regresar_bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresar_bMouseClicked
-
+        multasTabla mt = new multasTabla(tbu);
+        mt.show();
+        this.dispose();
     }//GEN-LAST:event_regresar_bMouseClicked
 
     private void guardarImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarImprimirMouseClicked
