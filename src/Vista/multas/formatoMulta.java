@@ -10,6 +10,7 @@ import Controlador.ControladorUtilerias;
 import Modelo.TablaMultas;
 import Modelo.TablaMultasGeneradas;
 import Modelo.TablaUsuario;
+import Vista.Principal.menuPrincipal2;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -503,7 +504,6 @@ public class formatoMulta extends javax.swing.JFrame {
             cbd.closeConnection();
             if(operacionExitosa == 1){
                 JOptionPane.showMessageDialog(null, "La factura fue generada exitosamente.");
-                this.dispose();
                 
                 String [] datosDocto = new String[15];
                 datosDocto[0] = String.valueOf(campoUsuarioActual.getText()); //#usuario#
@@ -548,6 +548,10 @@ public class formatoMulta extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(formatoMulta.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
+                menuPrincipal2 mP2 = new menuPrincipal2(tbu);
+                mP2.show();                
+                this.dispose();
             }
             else{
                 JOptionPane.showMessageDialog(null, "La factura no fue generada, verifica con el administrador.");

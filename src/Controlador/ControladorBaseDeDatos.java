@@ -394,7 +394,7 @@ public class ControladorBaseDeDatos {
         DefaultTableModel modeloRetorno;
         modeloRetorno = new DefaultTableModel(null, columna);
         try {
-            String Query = "SELECT id,nombres,apellido_pat,apellido_mat,marca,modelo,placas,created_by,created_at FROM tabla_propietario";
+            String Query = "SELECT tabla_propietario.id,nombres,apellido_pat,apellido_mat,marca,modelo,placas,created_by,tabla_propietario.created_at FROM tabla_propietario JOIN tabla_vehiculo";
             System.out.println("Contenido en ejecución: " + Query);
 
             PreparedStatement us = Conexion.prepareStatement(Query);
@@ -590,7 +590,7 @@ public class ControladorBaseDeDatos {
         DefaultTableModel modeloRetorno;
         modeloRetorno = new DefaultTableModel(null, columna);
         try {
-            String Query = "SELECT * FROM hacienda.tabla_propietario";
+            String Query = "SELECT tabla_propietario.id,nombres,apellido_pat,apellido_mat,sexo,edad,domicilio,lugar,created_by,updated_by,tabla_propietario.created_at,tabla_propietario.updated_at,id_vehiculo,transmision FROM tabla_propietario JOIN tabla_vehiculo";
 
             System.out.println("Contenido en ejecución: " + Query);
 

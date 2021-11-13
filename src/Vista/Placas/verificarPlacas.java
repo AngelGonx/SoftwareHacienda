@@ -35,7 +35,7 @@ public class verificarPlacas extends javax.swing.JFrame {
     Controlador.ControladorBaseDeDatos cbd = new ControladorBaseDeDatos(); 
     String[] columna = new String[]{"id", "nombres",
         "apellido_pat", "apellido_mat", "sexo", "edad", "domicilio","lugar", "created_by",
-        "updated_by", "created_at", "updated_at", "id_vehiculo"};
+        "updated_by", "created_at", "updated_at", "id_vehiculo","transmision"};
 
     
     public verificarPlacas(TablaUsuario tbu) {
