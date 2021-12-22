@@ -394,7 +394,7 @@ public class ControladorBaseDeDatos {
         DefaultTableModel modeloRetorno;
         modeloRetorno = new DefaultTableModel(null, columna);
         try {
-            String Query = "SELECT id,nombres,apellido_pat,apellido_mat,marca,modelo,placas,created_by,created_at FROM tabla_propietario";
+            String Query = "SELECT id,nombres,apellido_pat,apellido_mat,marca,modelo,placas,transmision,created_by,created_at FROM tabla_propietario";
             System.out.println("Contenido en ejecución: " + Query);
 
             PreparedStatement us = Conexion.prepareStatement(Query);
@@ -539,9 +539,9 @@ public class ControladorBaseDeDatos {
         DefaultTableModel modeloRetorno;
         modeloRetorno = new DefaultTableModel(null, columna);
         try {
-            String Query = "SELECT id,nombres,apellido_pat,apellido_mat,marca,modelo,placas,created_by,created_at FROM tabla_propietario "
+            String Query = "SELECT id,nombres,apellido_pat,apellido_mat,marca,modelo,placas,transmision,created_by,created_at FROM tabla_propietario "
                     + "where nombres like '%" +campoBusqueda+"%' or id like '%" +campoBusqueda+"%' or placas like '%" +campoBusqueda+"%' or marca like '%" +campoBusqueda+"%' "
-                    + "or modelo like '%" +campoBusqueda+"%' or apellido_pat like '%" +campoBusqueda+"%'  or apellido_mat like '%" +campoBusqueda+"%'";
+                    + "or modelo like '%" +campoBusqueda+"%' or apellido_pat like '%" +campoBusqueda+"%' or transmision like '%" +campoBusqueda+"%'  or apellido_mat like '%" +campoBusqueda+"%'";
             System.out.println("Contenido en ejecución: " + Query);
 
             PreparedStatement us = Conexion.prepareStatement(Query);
